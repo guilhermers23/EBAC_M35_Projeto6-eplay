@@ -1,9 +1,12 @@
-import GlobalStyles from "./styles/GlobalStyles";
+import Header from "./components/Header";
+import GlobalStyles, { Container } from "./styles/GlobalStyles";
 
 const App = () => (
   <>
     <GlobalStyles />
-    <div>Olá Mundo</div>
+    <Container>
+      <Header />
+    </Container>
   </>
 );
 

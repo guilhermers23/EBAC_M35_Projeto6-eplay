@@ -10,3 +10,10 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - instalar o styled components e o react router DOM;
 - importar as fontes do projeto;
 - criar constante com as cores do projeto.
+
+## Aula 2 - Construa o cabeçalho
+
+- criar pasta de imagens para o projeto;
+- criar a estrutura dos componentes do projeto;
+- estilizar a estrutura do cabeçalho;
+- configurar o container com as dimensões do projeto.
