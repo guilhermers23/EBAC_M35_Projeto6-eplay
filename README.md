@@ -17,3 +17,10 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - criar a estrutura dos componentes do projeto;
 - estilizar a estrutura do cabeçalho;
 - configurar o container com as dimensões do projeto.
+
+## Aula 3 - Crie o banner
+
+- criar componente para o banner do projeto;
+- customizar a estrutura do banner;
+- criar classes para adicionar conteúdo no código;
+- estilizar as fontes do projeto.
