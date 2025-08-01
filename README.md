@@ -35,3 +35,8 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 
 - criar e estilizar os cards de produtos;
 - usar o sistema de grid.
+
+## ✏️ Aula 6 - Componentize - Parte III
+
+- usar array de strings para renderizar diferentes tags;
+- aplicar estilização a componentes.

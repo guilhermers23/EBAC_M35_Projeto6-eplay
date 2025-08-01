@@ -5,6 +5,7 @@ export const Card = styled.div`
   background-color: ${colors.gray};
   border-radius: 8px;
   padding: 8px;
+  position: relative;
 
 `
 export const Title = styled.h3`
@@ -20,4 +21,10 @@ export const Description = styled.p`
   line-height: 22px;
   display: block;
   margin-top: 1rem;
+`
+
+export const Infos = styled.div`
+  position: absolute;
+  top: 16px;
+  right: 16px;
 `

@@ -1,15 +1,26 @@
 ; import Tag from "../Tag";
 import * as S from "./ProductStyled";
 
-const Product = () => {
+type PropsProduct = {
+  title: string;
+  cover: string;
+  category: string;
+  plataform: string;
+  infos: string[];
+  description: string;
+};
+
+const Product = ({ title, cover, category, plataform, infos, description }: PropsProduct) => {
   return (
     <S.Card>
-      <img src="https://placehold.co/222x250" alt="Game" />
-      <S.Title>Game</S.Title>
-      <Tag>Categoria</Tag>
-      <Tag>PS4/PS5</Tag>
-      <S.Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam optio maiores accusantium ab officia ipsa non distinctio doloremque voluptatum porro reiciendis commodi, placeat accusamus amet nulla corporis. Veniam, minima molestiae.
-      </S.Description>
+      <img src={cover} alt={title} />
+      <S.Infos>
+        {infos.map(info => <Tag key={info}>{info}</Tag>)}
+      </S.Infos>
+      <S.Title>{title}</S.Title>
+      <Tag>{category}</Tag>
+      <Tag>{plataform}</Tag>
+      <S.Description>{description}</S.Description>
     </S.Card>
   )
 };

@@ -8,7 +8,8 @@ const AppRoutes = () => (
       <Route path="/" element={
         <>
           <Banner />
-          <ProductList title="Promoções" background="gray" />
+          <ProductList title="Promoções" background="black" />
+          <ProductList title="Em Breve" background="gray" />
         </>
       } />
     </Routes>

@@ -1,7 +1,15 @@
 import styled from "styled-components";
+import type { PropsProductList } from ".";
+import { colors } from "../../styles/GlobalStyles";
+import { Card } from "../../components/Product/ProductStyled";
 
-export const SectionProducts = styled.section`
+export const SectionProducts = styled.section<Omit<PropsProductList, "title">>`
   padding: 32px 0;
+  background-color: ${({ background }) => background === "black" ? colors.black : colors.gray};
+
+  ${Card}{
+    background-color: ${({ background }) => background === "black" ? colors.gray : colors.black};
+  }
 `
 
 export const List = styled.ul`
