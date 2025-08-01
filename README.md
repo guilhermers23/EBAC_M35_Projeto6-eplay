@@ -30,3 +30,8 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - criar os diferentes tamanhos de tags para o projeto;
 - adicionar o position: relative ao container para posicionamento das tags;
 - criar e estilizar os botões do e-commerce.
+
+## ✏️ Aula 5 - Componentize - Parte II
+
+- criar e estilizar os cards de produtos;
+- usar o sistema de grid.
