@@ -7,6 +7,10 @@ export const Card = styled.div`
   padding: 8px;
   position: relative;
 
+  img{
+    max-width: 100%;
+  }
+
 `
 export const Title = styled.h3`
   display: block;

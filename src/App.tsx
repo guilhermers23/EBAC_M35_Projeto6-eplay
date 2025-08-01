@@ -1,13 +1,9 @@
-import Header from "./components/Header";
 import AppRoutes from "./routes";
-import GlobalStyles, { Container } from "./styles/GlobalStyles";
+import GlobalStyles from "./styles/GlobalStyles";
 
 const App = () => (
   <>
     <GlobalStyles />
-    <Container>
-      <Header />
-    </Container>
     <AppRoutes />
   </>
 );

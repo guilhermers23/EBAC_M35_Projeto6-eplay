@@ -1,16 +1,8 @@
-; import Tag from "../Tag";
+; import type GameModel from "../../models/Game";
+import Tag from "../Tag";
 import * as S from "./ProductStyled";
 
-type PropsProduct = {
-  title: string;
-  cover: string;
-  category: string;
-  plataform: string;
-  infos: string[];
-  description: string;
-};
-
-const Product = ({ title, cover, category, plataform, infos, description }: PropsProduct) => {
+const Product = ({ title, cover, category, plataform, infos, description }: Omit<GameModel, "id">) => {
   return (
     <S.Card>
       <img src={cover} alt={title} />

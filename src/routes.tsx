@@ -1,17 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import Banner from "./components/Banner";
-import ProductList from "./containers/ProductList";
+import { Home } from "./pages/Home";
+import { Category } from "./pages/Category";
+import Header from "./components/Header";
 
 const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={
-        <>
-          <Banner />
-          <ProductList title="Promoções" background="black" />
-          <ProductList title="Em Breve" background="gray" />
-        </>
-      } />
+      <Route element={<Header />}>
+        <Route index element={<Home />} />
+        <Route path="/category" element={<Category />} />
+      </Route>
     </Routes>
   </BrowserRouter>
 );
