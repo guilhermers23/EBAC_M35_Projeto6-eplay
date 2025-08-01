@@ -1,5 +1,5 @@
-import Banner from "./components/Banner";
 import Header from "./components/Header";
+import AppRoutes from "./routes";
 import GlobalStyles, { Container } from "./styles/GlobalStyles";
 
 const App = () => (
@@ -8,7 +8,7 @@ const App = () => (
     <Container>
       <Header />
     </Container>
-    <Banner />
+    <AppRoutes />
   </>
 );
 
