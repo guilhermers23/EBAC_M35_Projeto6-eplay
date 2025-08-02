@@ -3,6 +3,7 @@ import logo from "../../assets/imgs/logo.svg";
 import cart from "../../assets/imgs/carrinho.svg";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./HeaderStyled";
+import Footer from "../Footer";
 
 const Header = () => (
   <>
@@ -27,7 +28,9 @@ const Header = () => (
         </S.LinkCart>
       </S.HeaderBar>
     </Container>
+
     <Outlet />
+    <Footer />
   </>
 );
 
