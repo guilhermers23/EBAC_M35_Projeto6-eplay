@@ -55,3 +55,11 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - estilizar as cores e estruturar a altura do rodapé;
 - criar constante para configurar a data do ano e atualizar automaticamente;
 - criar links para o funcionamento dos botões.
+
+# 👨‍🎓 EBAC Módulo 36 - Construa uma loja virtual com React - Parte II
+
+## ✏️ Aula 1 - Crie a página de detalhes
+
+- configurar e compreender o sistema de rotas no React;
+- criar uma página de detalhes do produto interativa;
+- utilizar a desestruturação e manipulação de parâmetros de rota.
