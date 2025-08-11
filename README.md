@@ -77,3 +77,10 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - criar seções padronizadas de textos;
 - adicionar propriedades ao componente;
 - renderizar o conteúdo usando JSX.Element.
+
+## ✏️ Aula 4 - Crie a galeria - Parte I
+
+- exportar as imagens e vídeos para a pasta do projeto;
+- estilizar a galeria de acordo com a estrutura do projeto;
+- usar elementos `<ul>` e `<li>` para criar listas para a página;
+- conhecer a propriedade object-fit.

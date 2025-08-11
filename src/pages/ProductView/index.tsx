@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import Hero from "../../components/Hero";
 import Section from "../../components/Section";
+import Gallery from "../../components/Gallery";
 
 export const ProductView = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ export const ProductView = () => {
         </p>
       </Section>
       <Section title="Galeria" background="gray">
-        <div>Fotos</div>
+        <Gallery />
       </Section>
     </>
   )
