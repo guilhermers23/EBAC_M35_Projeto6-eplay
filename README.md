@@ -71,3 +71,9 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - aplicar overlay nos elementos;
 - ajustar as fontes dos textos conforme o projeto;
 - usar a propriedade variant para os botões.
+
+## ✏️ Aula 3 - Componentize - Parte II
+
+- criar seções padronizadas de textos;
+- adicionar propriedades ao componente;
+- renderizar o conteúdo usando JSX.Element.

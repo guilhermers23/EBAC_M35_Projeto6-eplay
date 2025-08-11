@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { TagContainer } from "../Tag/TagStyled";
-import { Container } from "../../styles/GlobalStyles";
+import { colors, Container } from "../../styles/GlobalStyles";
 
 export const Imagem = styled.div`
+  position: relative;
   width: 100%;
   height: 560px;
   display: block;
@@ -12,7 +13,19 @@ export const Imagem = styled.div`
   background-position: center;
   font-weight: bold;
 
+  &::after{
+      position: absolute;
+      background-color: ${colors.black};
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      content: '';
+      opacity: 35%;
+    }
+
   ${Container}{
+    z-index: 1;
     position: relative;
     padding-top: 340px;
     display: flex;

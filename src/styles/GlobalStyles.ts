@@ -16,6 +16,14 @@ const GlobalStyles = createGlobalStyle`
   list-style: none;
   text-decoration: none;
   font-family: "Rubik", sans-serif;
+
+  a{
+    color: #FFF;
+  }
+
+  :visited{
+    color: #FFF;
+  }
 }
 
 body{

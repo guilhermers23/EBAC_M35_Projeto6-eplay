@@ -10,7 +10,6 @@ export const Card = styled.div`
   img{
     max-width: 100%;
   }
-
 `
 export const Title = styled.h3`
   display: block;
