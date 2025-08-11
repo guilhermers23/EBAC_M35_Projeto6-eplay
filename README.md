@@ -63,3 +63,11 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - configurar e compreender o sistema de rotas no React;
 - criar uma página de detalhes do produto interativa;
 - utilizar a desestruturação e manipulação de parâmetros de rota.
+
+## ✏️ Aula 2 - Componentize - Parte I
+
+- criar componentes para a seção hero;
+- estilizar o banner de acordo com a estrutura;
+- aplicar overlay nos elementos;
+- ajustar as fontes dos textos conforme o projeto;
+- usar a propriedade variant para os botões.

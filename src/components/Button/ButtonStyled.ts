@@ -1,11 +1,13 @@
+import { colors } from './../../styles/GlobalStyles';
 import styled from "styled-components";
 import { Link } from "react-router";
-import { colors } from "../../styles/GlobalStyles";
+import type { PropsButton } from '.';
 
-export const Button = styled.button`
-  border: 2px solid ${colors.white};
+export const Button = styled.button<PropsButton>`
+  border: 2px solid;
+  border-color: ${({ variantbutton }) => (variantbutton === "primary" ? colors.green : colors.white)};
   color: ${colors.white};
-  background-color: transparent;
+  background-color: ${({ variantbutton }) => (variantbutton === "primary" ? colors.green : 'transparent')} ;
   font-size: 1rem;
   font-weight: bold;
   padding: 8px 16px;
