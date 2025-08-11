@@ -1,21 +1,65 @@
+import butonPlay from "../../assets/imgs/botao-play.png";
+import butonZoom from "../../assets/imgs/mais-zoom.png";
+import close from "../../assets/imgs/close.png";
 import * as S from "./GalleryStyled";
 
-const Gallery = () => {
+type PropsGallery = {
+  type: "image" | "video";
+  url: string;
+}
+
+const mock: PropsGallery[] = [
+  {
+    type: "image",
+    url: "https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg"
+  },
+  {
+    type: "image",
+    url: "https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg"
+  },
+  {
+    type: "video",
+    url: "https://www.youtube.com/embed/u5rWBgBjDsc?si=2Vr00W5n24sxhoBM"
+  }
+];
+
+type Props = { defaultCover: string; name: string };
+const Gallery = ({ defaultCover, name }: Props) => {
+
+  const getMediaCover = (media: PropsGallery) => {
+    if (media.type === "image") return media.url;
+    return defaultCover;
+  };
+
+  const getMediaIcon = (media: PropsGallery) => {
+    if (media.type === "image") return butonZoom;
+    return butonPlay;
+  };
+
   return (
-    <S.ListImg>
-      <S.Item>
-        <img src="https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg" alt="img" />
-      </S.Item>
-      <S.Item>
-        <img src="https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg" alt="img" />
-      </S.Item>
-      <S.Item>
-        <img src="https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg" alt="img" />
-      </S.Item>
-      <S.Item>
-        <img src="https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg" alt="img" />
-      </S.Item>
-    </S.ListImg>
+    <>
+      <S.ListImg>
+        {mock.map((media, index) => (
+          <S.Item key={index}>
+            <img src={getMediaCover(media)} alt={`Mídia ${index + 1} de ${name}`} />
+            <S.Action>
+              <img src={getMediaIcon(media)} alt="Mídia" />
+            </S.Action>
+          </S.Item>
+        ))}
+      </S.ListImg>
+
+      <S.Modal>
+        <S.ModalContent>
+          <header>
+            <h4>{name}</h4>
+            <img src={close} alt="Fechar" />
+          </header>
+          <img src="https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg" alt="F1" />
+        </S.ModalContent>
+        <S.Overlay />
+      </S.Modal >
+    </>
   )
 };
 

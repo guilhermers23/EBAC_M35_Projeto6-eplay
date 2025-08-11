@@ -26,7 +26,7 @@ export const ProductView = () => {
         </p>
       </Section>
       <Section title="Galeria" background="gray">
-        <Gallery />
+        <Gallery defaultCover="https://drop-assets.ea.com/images/5qorOMBNsHZVGeJSCtmMw4/3df68b17472b2dc19662596399ce1870/F125.HamiltonExtraSS.4.1-16x9-_1_.jpg" name="Jogo" />
       </Section>
     </>
   )

@@ -84,3 +84,11 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - estilizar a galeria de acordo com a estrutura do projeto;
 - usar elementos `<ul>` e `<li>` para criar listas para a página;
 - conhecer a propriedade object-fit.
+
+## ✏️ Aula 5 - Crie a galeria - Parte II
+
+- criar o sistema de modal para a página;
+- configurar ações de cliques e zoom;
+- embedar links de vídeo no código do projeto;
+- estilzar cores, tamanho e transparência dos modais;
+- visualizar a exibição 3D do projeto.
