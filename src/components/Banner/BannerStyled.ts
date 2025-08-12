@@ -2,12 +2,13 @@ import styled from "styled-components";
 import { TagContainer } from "../Tag/TagStyled";
 import { colors, Container } from "../../styles/GlobalStyles";
 
-export const Imagem = styled.div`
+type Props = { url: string };
+export const Imagem = styled.div<Props>`
   position: relative;
   width: 100%;
   height: 560px;
   display: block;
-  background-image: url("https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/97e9f5fa6e50c185d249956c6f198a2652a9217e69a59ecd.jpg");
+  background-image: url(${(props) => props.url});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -21,7 +22,7 @@ export const Imagem = styled.div`
       top: 0;
       left: 0;
       content: '';
-      opacity: 35%;
+      opacity: 70%;
     }
 
   ${Container}{

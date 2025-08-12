@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import { colors } from "../../styles/GlobalStyles";
+import { Link } from "react-router";
 
-export const Card = styled.div`
+export const Card = styled(Link)`
   background-color: ${colors.gray};
   border-radius: 8px;
   padding: 8px;
   position: relative;
 
   img{
-    max-width: 100%;
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
   }
 `
 export const Title = styled.h3`

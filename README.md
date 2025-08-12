@@ -97,3 +97,10 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 
 - configurar os estados dos modais;
 - organizar o código para melhoria do projeto.
+
+## ✏️ Aula 7 - Integre com a API - Parte I
+
+- criar tipos usando o TypeScript para comportar a estrutura da página;
+- usar funções para o funcionamento do site;
+- formatar a moeda com o objeto intl;
+- fazer a seção de categoria de jogos.

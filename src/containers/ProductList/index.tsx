@@ -1,21 +1,26 @@
-import { Link } from "react-router";
+import type { IGame } from "../../interfaces/IGame";
+import useAttributesGames from "../../hooks/useAttributesGames";
 import Product from "../../components/Product";
 import Section from "../../components/Section";
-import type GameModel from "../../models/Game";
 import * as S from "./ProductListStyled";
 
-export type PropsProductList = { title: string; background: "gray" | "black"; games: GameModel[] };
+export type PropsProductList = { title: string; background: "gray" | "black"; games: IGame[] };
+
 const ProductList = ({ title, background, games }: PropsProductList) => {
+  const { getAllTagsGames } = useAttributesGames();
+
   return (
     <Section title={title} background={background}>
       <S.List>
         {games.map((game) => (
-          <Link to={`/product/${game.id}`}>
-            <Product key={game.id}
-              title={game.title} cover={game.cover}
-              plataform={game.plataform} category={game.category}
-              description={game.description} infos={game.infos} />
-          </Link>
+          <Product key={game.id}
+            title={game.name}
+            cover={game.media.thumbnail}
+            plataform={game.details.system}
+            category={game.details.category}
+            description={game.description}
+            infos={getAllTagsGames(game)}
+            id={game.id} />
         ))}
       </S.List>
     </Section>
