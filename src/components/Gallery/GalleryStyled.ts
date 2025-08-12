@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { colors, Container } from "../../styles/GlobalStyles";
 
+type PropsVisible = { visible: boolean };
+
 export const ListImg = styled.ul`
   display: flex;
 `
@@ -48,8 +50,8 @@ export const Overlay = styled.div`
  background-color: rgba(0,0,0,0.7);
 `
 
-export const Modal = styled.div`
-  display: flex;
+export const Modal = styled.div<PropsVisible>`
+  display: ${({ visible }) => visible === true ? "flex" : "none"};
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -72,13 +74,24 @@ export const ModalContent = styled(Container)`
     justify-content: space-between;
     margin-bottom: 24px;
 
+    >img{
+      cursor: pointer;
+    }
+
     h4{
       font-size: 18px;
       font-weight: bold;
     }
   }
-  img{
+
+  img, iframe{
     display: block;
     max-width: 100%;
+  }
+
+  iframe{
+    width: 100%;
+    height: 480px;
+    border: none;
   }
 `

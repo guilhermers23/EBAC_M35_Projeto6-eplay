@@ -1,12 +1,12 @@
+import { useState } from "react";
 import butonPlay from "../../assets/imgs/botao-play.png";
 import butonZoom from "../../assets/imgs/mais-zoom.png";
 import close from "../../assets/imgs/close.png";
 import * as S from "./GalleryStyled";
 
-type PropsGallery = {
-  type: "image" | "video";
-  url: string;
-}
+interface PropsGallery { type: "image" | "video"; url: string; };
+interface ModalState extends PropsGallery { visible: boolean };
+type Props = { defaultCover: string; name: string };
 
 const mock: PropsGallery[] = [
   {
@@ -23,8 +23,8 @@ const mock: PropsGallery[] = [
   }
 ];
 
-type Props = { defaultCover: string; name: string };
 const Gallery = ({ defaultCover, name }: Props) => {
+  const [stateModal, setStateModal] = useState<ModalState>({ type: "image", visible: false, url: 'https://http.cat/images/404.jpg' });
 
   const getMediaCover = (media: PropsGallery) => {
     if (media.type === "image") return media.url;
@@ -36,11 +36,19 @@ const Gallery = ({ defaultCover, name }: Props) => {
     return butonPlay;
   };
 
+  const openModal = (media: ModalState) => {
+    setStateModal({ type: media.type, url: media.url, visible: true })
+  };
+
+  const closeModal = () => {
+    setStateModal({ type: "image", url: "https://http.cat/images/404.jpg", visible: false })
+  };
+
   return (
     <>
       <S.ListImg>
         {mock.map((media, index) => (
-          <S.Item key={index}>
+          <S.Item key={index} onClick={() => openModal(media as ModalState)}>
             <img src={getMediaCover(media)} alt={`Mídia ${index + 1} de ${name}`} />
             <S.Action>
               <img src={getMediaIcon(media)} alt="Mídia" />
@@ -49,15 +57,20 @@ const Gallery = ({ defaultCover, name }: Props) => {
         ))}
       </S.ListImg>
 
-      <S.Modal>
+      <S.Modal visible={stateModal.visible}>
         <S.ModalContent>
           <header>
             <h4>{name}</h4>
-            <img src={close} alt="Fechar" />
+            <img src={close} alt="Fechar" onClick={closeModal} />
           </header>
-          <img src="https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg" alt="F1" />
+
+          {stateModal.type === "image" ?
+            <img src={stateModal.url} alt="Midia" />
+            : <iframe src={stateModal.url} />
+          }
+
         </S.ModalContent>
-        <S.Overlay />
+        <S.Overlay onClick={() => closeModal()} />
       </S.Modal >
     </>
   )

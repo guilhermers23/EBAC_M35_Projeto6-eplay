@@ -92,3 +92,8 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - embedar links de vídeo no código do projeto;
 - estilzar cores, tamanho e transparência dos modais;
 - visualizar a exibição 3D do projeto.
+
+## ✏️ Aula 6 - Crie a galeria - Parte III
+
+- configurar os estados dos modais;
+- organizar o código para melhoria do projeto.
