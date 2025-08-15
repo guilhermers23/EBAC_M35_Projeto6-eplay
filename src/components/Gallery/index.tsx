@@ -5,24 +5,9 @@ import close from "../../assets/imgs/close.png";
 import * as S from "./GalleryStyled";
 import type { IModalState, IPropsGallery } from "../../interfaces/IGame";
 
-type Props = { defaultCover: string; name: string };
+type Props = { defaultCover: string; name: string, midias: IPropsGallery[] };
 
-const mock: IPropsGallery[] = [
-  {
-    type: "image",
-    url: "https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg"
-  },
-  {
-    type: "image",
-    url: "https://drop-assets.ea.com/images/2eo3Q9i7mC72rQrPvckk2h/e9a736ea0e9d76fe8e36cdbbb355f384/APXGP_Feature.jpg"
-  },
-  {
-    type: "video",
-    url: "https://www.youtube.com/embed/u5rWBgBjDsc?si=2Vr00W5n24sxhoBM"
-  }
-];
-
-const Gallery = ({ defaultCover, name }: Props) => {
+const Gallery = ({ defaultCover, name, midias }: Props) => {
   const [stateModal, setStateModal] = useState<IModalState>({ type: "image", visible: false, url: 'https://http.cat/images/404.jpg' });
 
   const getMediaCover = (media: IPropsGallery) => {
@@ -46,7 +31,7 @@ const Gallery = ({ defaultCover, name }: Props) => {
   return (
     <>
       <S.ListImg>
-        {mock.map((media, index) => (
+        {midias.map((media, index) => (
           <S.Item key={index} onClick={() => openModal(media as IModalState)}>
             <img src={getMediaCover(media)} alt={`Mídia ${index + 1} de ${name}`} />
             <S.Action>

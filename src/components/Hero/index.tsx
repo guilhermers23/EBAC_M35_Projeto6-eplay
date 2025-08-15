@@ -1,27 +1,39 @@
+import useAttributesGames from "../../hooks/useAttributesGames";
+import type { IGame } from "../../interfaces/IGame";
 import { Container } from "../../styles/GlobalStyles";
 import Button from "../Button";
 import Tag from "../Tag";
 import * as S from "./HeroStyled";
 
-const Hero = () => {
+type PropsHero = { game: IGame };
+
+const Hero = ({ game }: PropsHero) => {
+  const { formatPrice } = useAttributesGames();
+
   return (
-    <S.Banner>
+    <S.Banner style={{ backgroundImage: `url(${game.media.cover})` }}>
       <Container>
         <div>
-          <Tag>Corrida</Tag>
-          <Tag>PS5</Tag>
+          <Tag>{game.details.category}</Tag>
+          <Tag>{game.details.system}</Tag>
         </div>
 
         <S.Infos>
-          <h2>F1® 25</h2>
-          <p>De <span>R$ 349,90 </span> <br />
-            Por R$ 249,90</p>
+          <h2>{game.name}</h2>
+          <p>
+            {game.prices.discount &&
+              <>
+                De < span > R$ {formatPrice(game.prices.old)} </span> <br />
+              </>
+            }
+            {game.prices.current ? <>Por {formatPrice(game.prices.current)}</> : <>Em Breve</>}
+          </p>
           <Button title="Adiconar item ao carrinho"
             type="button"
             variantbutton="primary">Adicionar ao carrinho</Button>
         </S.Infos>
       </Container>
-    </S.Banner>
+    </S.Banner >
   )
 };
 

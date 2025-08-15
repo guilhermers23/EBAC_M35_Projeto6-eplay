@@ -2,13 +2,11 @@ import styled from "styled-components";
 import { TagContainer } from "../Tag/TagStyled";
 import { colors, Container } from "../../styles/GlobalStyles";
 
-type Props = { url: string };
-export const Imagem = styled.div<Props>`
+export const Imagem = styled.div`
   position: relative;
   width: 100%;
   height: 560px;
   display: block;
-  background-image: url(${(props) => props.url});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

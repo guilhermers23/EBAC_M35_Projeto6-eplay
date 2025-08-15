@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import type { IGame } from "../../interfaces/IGame";
-import { comingSoonGames, saleGames } from "../../services/gamesService";
 import Banner from "../../components/Banner";
 import ProductList from "../../containers/ProductList";
+import { getComingSoonGames, getSaleGames } from "../../services/gamesService";
 
 export const Home = () => {
   const [gamesSale, setGamesSale] = useState<IGame[]>([]);
@@ -10,8 +10,8 @@ export const Home = () => {
 
   const findGames = async () => {
     try {
-      setGamesSale((await saleGames()).data);
-      setGamesComingSoon((await comingSoonGames()).data);
+      setGamesSale((await getSaleGames()).data);
+      setGamesComingSoon((await getComingSoonGames()).data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os jogos!")
       console.error(error);

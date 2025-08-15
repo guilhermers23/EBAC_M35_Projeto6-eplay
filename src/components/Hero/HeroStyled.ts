@@ -6,7 +6,6 @@ export const Banner = styled.div`
   display: block;
   height: 480px;
   width: 100%;
-  background-image: url("https://i.ytimg.com/vi/u5rWBgBjDsc/maxresdefault.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
