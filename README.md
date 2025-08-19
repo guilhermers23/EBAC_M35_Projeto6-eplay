@@ -56,6 +56,8 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - criar constante para configurar a data do ano e atualizar automaticamente;
 - criar links para o funcionamento dos botões.
 
+---
+
 # 👨‍🎓 EBAC Módulo 36 - Construa uma loja virtual com React - Parte II
 
 ## ✏️ Aula 1 - Crie a página de detalhes
@@ -109,3 +111,15 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 
 - fazer a integração da parte interna da página;
 - parametrizar as propriedades necessárias
+
+---
+
+# 👨‍🎓 EBAC Módulo 37 - Construa uma loja virtual com React - Parte III
+
+## ✏️ Aula 1 - Configure o Redux
+
+- criar a pasta store (loja);
+- instalar o redux e o redux toolkit;
+- usar o root reducer para dividir o estado;
+- praticar o typeof para determinar o tipo de dado;
+- importar o provider para encapsulamento.
