@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, Container } from "../../styles/GlobalStyles";
+import { colors, Container, Overlay } from "../../styles/GlobalStyles";
 
 type PropsVisible = { visible: boolean };
 
@@ -40,14 +40,6 @@ export const Item = styled.li`
       transition: opacity .5s ease;
     }
   }
-`
-
-export const Overlay = styled.div`
- top: 0;
- left: 0;
- width: 100%;
- height: 100%;
- background-color: rgba(0,0,0,0.7);
 `
 
 export const Modal = styled.div<PropsVisible>`

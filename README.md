@@ -130,3 +130,10 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - praticar a função middleware-aware reducer;
 - renomear elementos para segurança do código;
 - definir e configurar os pontos de acesso (endpoints).
+
+## ✏️ Aula 3 - Crie o carrinho
+
+- criar componente para o carrinho;
+- fazer a lista dos produtos;
+- usar o styled-components para estilizar os elementos;
+- configurar abertura e fechamento dos botões.

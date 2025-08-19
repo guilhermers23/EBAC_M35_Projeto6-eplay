@@ -1,9 +1,10 @@
 import { useState } from "react";
+import type { IModalState, IPropsGallery } from "../../interfaces/IGame";
 import butonPlay from "../../assets/imgs/botao-play.png";
 import butonZoom from "../../assets/imgs/mais-zoom.png";
 import close from "../../assets/imgs/close.png";
+import { Overlay } from "../../styles/GlobalStyles";
 import * as S from "./GalleryStyled";
-import type { IModalState, IPropsGallery } from "../../interfaces/IGame";
 
 type Props = { defaultCover: string; name: string, midias: IPropsGallery[] };
 
@@ -54,7 +55,7 @@ const Gallery = ({ defaultCover, name, midias }: Props) => {
           }
 
         </S.ModalContent>
-        <S.Overlay onClick={() => closeModal()} />
+        <Overlay onClick={() => closeModal()} />
       </S.Modal >
     </>
   )
