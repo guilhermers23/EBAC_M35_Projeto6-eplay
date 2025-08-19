@@ -1,30 +1,19 @@
-import { useEffect, useState } from "react";
-import type { IGame } from "../../interfaces/IGame";
 import Banner from "../../components/Banner";
 import ProductList from "../../containers/ProductList";
-import { getComingSoonGames, getSaleGames } from "../../services/gamesService";
+import { useGetComingSoonGamesQuery, useGetSaleGamesQuery } from "../../services/api";
 
 export const Home = () => {
-  const [gamesSale, setGamesSale] = useState<IGame[]>([]);
-  const [gamesComingSoon, setGamesComingSoon] = useState<IGame[]>([]);
+  const { data: gamesSale } = useGetSaleGamesQuery();
+  const { data: gamesComingSoon } = useGetComingSoonGamesQuery();
 
-  const findGames = async () => {
-    try {
-      setGamesSale((await getSaleGames()).data);
-      setGamesComingSoon((await getComingSoonGames()).data);
-    } catch (error) {
-      alert("Ocorreu um erro ao buscar os jogos!")
-      console.error(error);
-    }
-  };
-
-  useEffect(() => { findGames() }, []);
-
-  return (
-    <>
-      <Banner />
-      <ProductList games={gamesSale} title="Promoções" background="black" />
-      <ProductList games={gamesComingSoon} title="Em Breve" background="gray" />
-    </>
-  )
+  if (gamesComingSoon && gamesSale) {
+    return (
+      <>
+        <Banner />
+        <ProductList games={gamesSale} title="Promoções" background="black" />
+        <ProductList games={gamesComingSoon} title="Em Breve" background="gray" />
+      </>
+    )
+  }
+  return <h3>Carregando...</h3>
 };

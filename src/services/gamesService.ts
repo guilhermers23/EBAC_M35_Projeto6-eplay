@@ -1,6 +1,11 @@
 import axios from "axios";
 export const baseURL = "https://ebac-fake-api.vercel.app/api/eplay";
 
+export const getFeaturedGames = async () => {
+  const res = axios.get(`${baseURL}/destaque`);
+  return res;
+};
+
 export const getSaleGames = async () => {
   const res = axios.get(`${baseURL}/promocoes`);
   return res;
@@ -11,10 +16,6 @@ export const getComingSoonGames = async () => {
   return res;
 };
 
-export const getFeaturedGames = async () => {
-  const res = axios.get(`${baseURL}/destaque`);
-  return res;
-};
 
 export const getActionGames = async () => {
   const res = axios.get(`${baseURL}/acao`);

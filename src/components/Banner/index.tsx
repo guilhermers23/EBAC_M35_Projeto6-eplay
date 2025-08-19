@@ -1,26 +1,13 @@
-import { useEffect, useState } from "react";
-import type { IGame } from "../../interfaces/IGame";
-import { getFeaturedGames } from "../../services/gamesService";
 import useAttributesGames from "../../hooks/useAttributesGames";
+import { useGetFeaturedGamesQuery } from "../../services/api";
+import { Container } from "../../styles/GlobalStyles";
 import Button from "../Button";
 import Tag from "../Tag";
-import { Container } from "../../styles/GlobalStyles";
 import * as S from "./BannerStyled";
 
 const Banner = () => {
-  const [gameDestaque, setGameDestaque] = useState<IGame>();
+  const { data: gameDestaque, isLoading } = useGetFeaturedGamesQuery();
   const { formatPrice } = useAttributesGames();
-
-  const getGameFeatured = async () => {
-    try {
-      const games = (await getFeaturedGames()).data;
-      setGameDestaque(games);
-    } catch (error) {
-      console.error(error)
-    }
-  };
-
-  useEffect(() => { getGameFeatured() }, []);
 
   if (!gameDestaque) {
     return <h1>Carregando...</h1>

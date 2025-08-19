@@ -1,21 +1,12 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import type { IGame } from "../../interfaces/IGame";
+import { useGetGameByIdQuery } from "../../services/api";
 import Hero from "../../components/Hero";
 import Section from "../../components/Section";
 import Gallery from "../../components/Gallery";
-import { getGameById } from "../../services/gamesService";
 
 export const ProductView = () => {
   const { id } = useParams();
-  const [game, setGame] = useState<IGame>();
-
-  const findGameID = async (gameID: string) => {
-    const game = await getGameById(gameID);
-    setGame(game.data);
-  };
-
-  useEffect(() => { if (id) findGameID(id) }, [id]);
+  const { data: game } = useGetGameByIdQuery(id!);
 
   if (!game) return <h3>Carregando...</h3>
 

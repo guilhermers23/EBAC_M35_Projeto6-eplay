@@ -123,3 +123,10 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - usar o root reducer para dividir o estado;
 - praticar o typeof para determinar o tipo de dado;
 - importar o provider para encapsulamento.
+
+## ✏️ Aula 2 - Faça requisições com o RTK Query
+
+- criar Api para a comunicação entre aplicativo e serviço;
+- praticar a função middleware-aware reducer;
+- renomear elementos para segurança do código;
+- definir e configurar os pontos de acesso (endpoints).
