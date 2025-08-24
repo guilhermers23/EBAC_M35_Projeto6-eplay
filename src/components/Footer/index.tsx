@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { HashLink } from "react-router-hash-link";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./FooterStyled";
 
@@ -10,21 +10,18 @@ const Footer = () => (
       <S.SectionFooter>
         <S.Title>Categoria</S.Title>
         <S.List>
-          <Link to="/"><li>RPG</li></Link>
-          <Link to="/"><li>Ação</li></Link>
-          <Link to="/"><li>Aventura</li></Link>
-          <Link to="/"><li>Esportes</li></Link>
-          <Link to="/"><li>Simulação</li></Link>
-          <Link to="/"><li>Estratégia</li></Link>
-          <Link to="/"><li>FPS</li></Link>
+          <HashLink to="/category#rpg"><li>RPG</li></HashLink>
+          <HashLink to="/category#action"><li>Ação</li></HashLink>
+          <HashLink to="/category#sports"><li>Esportes</li></HashLink>
+          <HashLink to="/category#simulation"><li>Simulação</li></HashLink>
+          <HashLink to="/category#figth"><li>Luta</li></HashLink>
         </S.List>
       </S.SectionFooter>
       <S.SectionFooter>
         <S.Title>Acesso Rápido</S.Title>
         <S.List>
-          <Link to="/"><li>Novidades</li></Link>
-          <Link to="/"><li>Promoções</li></Link>
-          <Link to="/"><li>Em breve</li></Link>
+          <HashLink to="/#on-sale"><li>Promoções</li></HashLink>
+          <HashLink to="/#coming-soon"><li>Em breve</li></HashLink>
         </S.List>
       </S.SectionFooter>
       <p>{currentDate} - © E-PLAY Todos os direitos reservados</p>

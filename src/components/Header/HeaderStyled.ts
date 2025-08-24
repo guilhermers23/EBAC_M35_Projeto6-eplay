@@ -1,4 +1,4 @@
-import { colors } from './../../styles/GlobalStyles';
+import { breakpoints, colors } from './../../styles/GlobalStyles';
 import styled from "styled-components";
 
 export const HeaderBar = styled.header`
@@ -14,6 +14,10 @@ export const HeaderBar = styled.header`
     color: ${colors.white};
     font-weight: bold;
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+      display: none;
+    }
 `
 
 export const NavbarHeader = styled.div`

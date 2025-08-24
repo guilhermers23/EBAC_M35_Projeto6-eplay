@@ -4,13 +4,13 @@ import Product from "../../components/Product";
 import Section from "../../components/Section";
 import * as S from "./ProductListStyled";
 
-export type PropsProductList = { title: string; background: "gray" | "black"; games: IGame[] };
+export type PropsProductList = { title: string; background: "gray" | "black"; games: IGame[]; sectionid?: string };
 
-const ProductList = ({ title, background, games }: PropsProductList) => {
+const ProductList = ({ title, background, games, sectionid }: PropsProductList) => {
   const { getAllTagsGames } = useAttributesGames();
 
   return (
-    <Section title={title} background={background}>
+    <Section title={title} background={background} id={sectionid}>
       <S.List>
         {games.map((game) => (
           <Product key={game.id}

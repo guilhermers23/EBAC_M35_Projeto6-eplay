@@ -22,6 +22,7 @@ export const SectionFooter = styled.section`
 export const List = styled.ul`
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 
   li{
     color: ${colors.gray2};

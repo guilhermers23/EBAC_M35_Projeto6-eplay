@@ -10,8 +10,8 @@ export const Home = () => {
     return (
       <>
         <Banner />
-        <ProductList games={gamesSale} title="Promoções" background="black" />
-        <ProductList games={gamesComingSoon} title="Em Breve" background="gray" />
+        <ProductList games={gamesSale} title="Promoções" background="black" sectionid="on-sale" />
+        <ProductList games={gamesComingSoon} title="Em Breve" background="gray" sectionid="coming-soon" />
       </>
     )
   }

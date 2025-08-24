@@ -6,11 +6,12 @@ export type Props = {
   title: string;
   background: "black" | "gray"
   children: JSX.Element
+  id?: string
 };
 
-const Section = ({ title, background, children }: Props) => {
+const Section = ({ title, background, children, id }: Props) => {
   return (
-    <S.Section background={background} >
+    <S.Section background={background} id={id}>
       <Container>
         <S.Title>{title}</S.Title>
         {children}

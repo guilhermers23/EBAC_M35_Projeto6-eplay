@@ -145,3 +145,9 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - usar funções para formatar os preços dos produtos.
 - corrigir os possíveis bugs que surgirem.
 - usar função remove para retirar itens do carrinho.
+
+## ✏️ Aula 5 - Faça a responsividade
+
+- compreender os princípios da responsividade;
+- praticar o uso de media queries;
+- implementar âncoras e links internos.
