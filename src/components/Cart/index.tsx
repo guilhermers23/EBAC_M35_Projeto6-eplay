@@ -1,19 +1,43 @@
-import { Overlay } from "../../styles/GlobalStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { closeCart } from "../../store/reducers/cart";
+import type { RootReducer } from "../../store";
+import useAttributesGames from "../../hooks/useAttributesGames";
 import Button from "../Button";
 import ItemCart from "./ItemCart";
+import { Overlay } from "../../styles/GlobalStyles";
 import * as S from "./CartStyled";
 
 const Cart = () => {
+  const dispatch = useDispatch();
+  const { isOpen, items } = useSelector((state: RootReducer) => state.cart);
+  const { formatPrice } = useAttributesGames();
+  const plural = items.length === 1 ? "jogo" : "jogos";
+  const close = () => dispatch(closeCart());
+
+  const getTotalPrice = () => {
+    return items.reduce((acc, currentValue) => {
+      return (acc += currentValue.prices.current!)
+    }, 0)
+  };
+
   return (
-    <S.CartContainer>
-      <Overlay />
+    <S.CartContainer isopen={isOpen}>
+      <Overlay onClick={close} />
       <S.Siderbar>
         <ul>
-          <ItemCart />
-          <ItemCart />
+          {items.map(game =>
+            <ItemCart key={game.id}
+              plataform={game.details.system}
+              id={game.id}
+              category={game.details.category}
+              cover={game.media.thumbnail}
+              title={game.name}
+              price={formatPrice(game.prices.current)} />
+          )}
         </ul>
-        <S.Amount>3 jogo(s) no carrinho</S.Amount>
-        <S.Prices>Total R$ 255,99 <span>Em até 6x sem juros</span></S.Prices>
+        <S.Amount>{items.length} {plural} no carrinho</S.Amount>
+        <S.Prices>Total {formatPrice(getTotalPrice())}
+          <span>Em até 6x sem juros</span></S.Prices>
         <Button title="Continuar compra" variantbutton="primary"
           type="button">Continuar com a compra</Button>
       </S.Siderbar>

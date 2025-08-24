@@ -28,9 +28,10 @@ export const Links = styled.ul`
   margin-left: 40px;
 `
 
-export const LinkCart = styled.a`
+export const ButtonCart = styled.a`
  display: flex;
  align-items: center;
  justify-content: space-between;
  gap: 10px;
+ cursor: pointer;
 `

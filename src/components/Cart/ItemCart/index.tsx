@@ -1,18 +1,31 @@
+import { useDispatch } from "react-redux";
+import { removeItemCart } from "../../../store/reducers/cart";
 import Tag from "../../Tag";
-import foto from "../../../assets/imgs/resident.png";
 import *  as S from "../CartStyled";
 
-const ItemCart = () => {
+type Props = {
+  title: string;
+  category: string;
+  plataform: string;
+  price: string;
+  cover: string;
+  id: number;
+};
+
+const ItemCart = ({ title, category, plataform, cover, price, id }: Props) => {
+  const dispatch = useDispatch();
+
+  const removeToCart = (gameId: number) => dispatch(removeItemCart(gameId));
   return (
     <S.CartItem>
-      <img src={foto} alt="" />
+      <img src={cover} alt={title} />
       <div>
-        <h3>Nome Jogo</h3>
-        <Tag>PS5</Tag>
-        <Tag>Corrida</Tag>
-        <span>R$ 190,99</span>
+        <h3>{title}</h3>
+        <Tag>{category}</Tag>
+        <Tag>{plataform}</Tag>
+        <span>{price}</span>
       </div>
-      <button type="button" />
+      <button type="button" onClick={() => removeToCart(id)} />
     </S.CartItem>
   )
 };

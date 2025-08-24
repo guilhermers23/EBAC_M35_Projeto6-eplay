@@ -1,18 +1,28 @@
 import type { IGame } from './../../interfaces/IGame';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-type cartState = { items: IGame[] };
-const initialState: cartState = { items: [] };
+type cartState = { items: IGame[], isOpen: boolean };
+const initialState: cartState = { items: [], isOpen: false };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addCart: (state, action: PayloadAction<IGame>) => {
-      state.items.push(action.payload)
-    }
+    addItemCart: (state, action: PayloadAction<IGame>) => {
+      const game = state.items.find(({ id }) => id === action.payload.id);
+      if (!game) {
+        state.items.push(action.payload);
+      } else {
+        alert("Jogo já adicionado ao carrinho.")
+      }
+    },
+    removeItemCart: (state, action: PayloadAction<number>) => {
+      state.items = state.items.filter(({ id }) => id !== action.payload);
+    },
+    openCart: (state) => { state.isOpen = true },
+    closeCart: (state) => { state.isOpen = false },
   }
 });
 
-export const { addCart } = cartSlice.actions;
+export const { addItemCart, removeItemCart, openCart, closeCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,14 +1,22 @@
+import { useDispatch } from "react-redux";
 import useAttributesGames from "../../hooks/useAttributesGames";
 import type { IGame } from "../../interfaces/IGame";
 import { Container } from "../../styles/GlobalStyles";
 import Button from "../Button";
 import Tag from "../Tag";
 import * as S from "./HeroStyled";
+import { addItemCart, openCart } from "../../store/reducers/cart";
 
 type PropsHero = { game: IGame };
 
 const Hero = ({ game }: PropsHero) => {
+  const dispacth = useDispatch();
   const { formatPrice } = useAttributesGames();
+
+  const addToCart = () => {
+    dispacth(addItemCart(game))
+    dispacth(openCart())
+  };
 
   return (
     <S.Banner style={{ backgroundImage: `url(${game.media.cover})` }}>
@@ -30,7 +38,8 @@ const Hero = ({ game }: PropsHero) => {
           </p>
           <Button title="Adiconar item ao carrinho"
             type="button"
-            variantbutton="primary">Adicionar ao carrinho</Button>
+            variantbutton="primary"
+            onClick={addToCart}>Adicionar ao carrinho</Button>
         </S.Infos>
       </Container>
     </S.Banner >

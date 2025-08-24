@@ -3,15 +3,15 @@ import { colors } from "../../styles/GlobalStyles";
 import { Button } from "../Button/ButtonStyled";
 import { TagContainer } from "../Tag/TagStyled";
 import close from "../../assets/imgs/close.png";
+type Props = { isopen: boolean };
 
-
-export const CartContainer = styled.div`
+export const CartContainer = styled.div<Props>`
+  display: ${props => props.isopen === true ? "flex" : "none"};
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
   justify-content: flex-end;
   z-index: 1;
 `

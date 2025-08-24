@@ -137,3 +137,11 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - fazer a lista dos produtos;
 - usar o styled-components para estilizar os elementos;
 - configurar abertura e fechamento dos botões.
+
+## ✏️ Aula 4 - Adicione e remova produtos
+
+- programar a abertura e fechamento do carrinho.
+- adicionar itens ao carrinho.
+- usar funções para formatar os preços dos produtos.
+- corrigir os possíveis bugs que surgirem.
+- usar função remove para retirar itens do carrinho.
