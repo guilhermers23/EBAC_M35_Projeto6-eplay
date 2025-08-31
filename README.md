@@ -162,3 +162,9 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - criar os campos do formulário;
 - estilizar os elementos do formulário;
 - organizar as hierarquias em tag.
+
+## ✏️ Aula 2 - Crie a seção de pagamento por cartão
+
+- criar o formulário para inserção dos dados do cartão;
+- inserir imagens no formulário;
+- configurar os estilos dos botões.
