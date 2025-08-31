@@ -11,11 +11,11 @@ export const Category = () => {
   if (actionGames && sportGames && figthGames && rpgGames && simulationGames) {
     return (
       <>
-        <ProductList games={actionGames} title="Ação" background="gray" sectionid="action" />
         <ProductList games={sportGames} title="Esportes" background="black" sectionid="sports" />
-        <ProductList games={figthGames} title="Luta" background="gray" sectionid="figth" />
+        <ProductList games={actionGames} title="Ação" background="gray" sectionid="action" />
         <ProductList games={rpgGames} title="RPJ" background="black" sectionid="rpg" />
-        <ProductList games={simulationGames} title="Simulação" background="gray" sectionid="simulation" />
+        <ProductList games={figthGames} title="Luta" background="gray" sectionid="figth" />
+        <ProductList games={simulationGames} title="Simulação" background="black" sectionid="simulation" />
       </>
     )
   }

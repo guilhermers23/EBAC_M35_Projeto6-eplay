@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { colors } from "../../styles/GlobalStyles";
 
 export const Footer = styled.footer`
-  background-color: ${colors.black};
+  background-color: ${colors.gray};
   padding: 32px 0;
   font-size: 14px;
+  margin-top: 40px;
 `
 
 export const Title = styled.h4`
@@ -26,6 +27,5 @@ export const List = styled.ul`
 
   li{
     color: ${colors.gray2};
-
   }
 `

@@ -151,3 +151,14 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - compreender os princípios da responsividade;
 - praticar o uso de media queries;
 - implementar âncoras e links internos.
+
+---
+
+# 👨‍🎓 EBAC Módulo 37 - Construa uma loja virtual com React - Parte IV
+
+## ✏️ Aula 1 - Construa a página de checkout
+
+- conhecer dicas de navegação nos arquivos;
+- criar os campos do formulário;
+- estilizar os elementos do formulário;
+- organizar as hierarquias em tag.

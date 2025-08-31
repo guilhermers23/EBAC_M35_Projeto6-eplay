@@ -13,12 +13,12 @@ export const ProductView = () => {
   return (
     <>
       <Hero game={game} />
-      <Section title="Sobre o jogo" background="gray">
+      <Section title="Sobre o jogo" background="black">
         <p>
           {game.description}
         </p>
       </Section>
-      <Section title="Mais detalhes" background="black">
+      <Section title="Mais detalhes" background="gray">
         <p>
           <b>Plataforma:</b> {game.details.system} <br />
           {game.release_date && <>
@@ -29,7 +29,7 @@ export const ProductView = () => {
           <b>Idiomas:</b>  {game.details.languages.join(', ')}
         </p>
       </Section>
-      <Section title="Galeria" background="gray">
+      <Section title="Galeria" background="black">
         <Gallery defaultCover={game.media.thumbnail}
           name={game.name}
           midias={game.media.gallery} />
