@@ -168,3 +168,10 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - criar o formulário para inserção dos dados do cartão;
 - inserir imagens no formulário;
 - configurar os estilos dos botões.
+
+## ✏️ Aula 3 - Aplique validações
+
+- conhecer as bibliotecas "formik" e "yup";
+- aplicar validações de lógica em formulários com as bibliotecas "formik" e "yup";
+- aplicar validações condicionais;
+- configurar mensagens de erro personalizadas para campos inválidos.

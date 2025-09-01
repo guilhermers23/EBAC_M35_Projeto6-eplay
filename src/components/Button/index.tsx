@@ -1,6 +1,6 @@
 import * as S from "./ButtonStyled";
 export type PropsButton = {
-  type: "button" | "link";
+  type: "button" | "link" | "submit";
   variantbutton?: "primary" | "secondary";
   title: string;
   to?: string;
@@ -9,10 +9,10 @@ export type PropsButton = {
 };
 
 const Button = ({ children, type, title, onClick, to, variantbutton }: PropsButton) => {
-  if (type === "button") {
-    return <S.Button type="button" variantbutton={variantbutton} title={title} onClick={onClick}>{children}</S.Button>
+  if (type === "link") {
+    return <S.ButtonLink to={to as string} title={title}>{children}</S.ButtonLink>
   };
-  return <S.ButtonLink to={to as string} title={title}>{children}</S.ButtonLink>
+  return <S.Button type={type} variantbutton={variantbutton} title={title} onClick={onClick}>{children}</S.Button>
 };
 
 export default Button;
