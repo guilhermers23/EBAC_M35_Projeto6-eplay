@@ -181,3 +181,9 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - implementar um menu responsivo em um projeto React;
 - utilizar media queries para controlar a visibilidade e o estilo de elementos da interface em diferentes tamanhos de tela;
 - gerenciar estados e eventos de cliques.
+
+## ✏️ Aula 5 - Faça integração com API
+
+- aprender os conceitos fundamentais de integração de uma aplicação React com uma API externa;
+- implementar requisições post;
+- manipular os dados recebidos como resposta da API após uma requisição bem-sucedida.

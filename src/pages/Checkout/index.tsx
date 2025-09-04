@@ -7,9 +7,12 @@ import Card from "../../components/Card";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./CheckoutStyled";
 import * as Yup from "yup";
+import { usePurchaseMutation } from "../../services/api";
 
 export const Checkout = () => {
   const [payWithCard, setPayWithCard] = useState(false);
+  const [purchase, { isLoading, isError, data }] = usePurchaseMutation();
+
   const formAttributes = useFormik({
     initialValues: {
       name: '',
@@ -42,7 +45,34 @@ export const Checkout = () => {
       installments: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
     }),
     onSubmit: values => {
-      console.log(values);
+      purchase({
+        products: [{ id: 1, price: 200 }],
+        billing: {
+          document: values.cpf,
+          email: values.email,
+          name: values.name
+        },
+        delivery: {
+          email: values.deliveryEmail
+        },
+        payment: {
+          installments: 1,
+          card: {
+            active: payWithCard,
+            code: Number(values.cardCode),
+            name: values.cardDisplayName,
+            number: values.cardNumber,
+            owner: {
+              document: values.cpfCardOwner,
+              name: values.cardOwner
+            },
+            expires: {
+              moth: 12,
+              year: 2027
+            },
+          }
+        },
+      })
     }
   });
 
