@@ -175,3 +175,9 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - aplicar validações de lógica em formulários com as bibliotecas "formik" e "yup";
 - aplicar validações condicionais;
 - configurar mensagens de erro personalizadas para campos inválidos.
+
+## ✏️ Aula 4 - Crie o menu responsivo
+
+- implementar um menu responsivo em um projeto React;
+- utilizar media queries para controlar a visibilidade e o estilo de elementos da interface em diferentes tamanhos de tela;
+- gerenciar estados e eventos de cliques.
