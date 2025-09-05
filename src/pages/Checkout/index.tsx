@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 import { FaCreditCard } from "react-icons/fa";
 import { IoBarcodeSharp } from "react-icons/io5";
 import { usePurchaseMutation } from "../../services/api";
@@ -7,11 +8,10 @@ import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./CheckoutStyled";
-import * as Yup from "yup";
 
 export const Checkout = () => {
   const [payWithCard, setPayWithCard] = useState(false);
-  const [purchase, { isLoading, isError, isSuccess, data }] = usePurchaseMutation();
+  const [purchase, { isSuccess, data }] = usePurchaseMutation();
 
   const formAttributes = useFormik({
     initialValues: {

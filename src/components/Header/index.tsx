@@ -7,6 +7,7 @@ import logo from "../../assets/imgs/logo.svg";
 import cart from "../../assets/imgs/carrinho.svg";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./HeaderStyled";
+import { HashLink } from "react-router-hash-link";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -33,8 +34,8 @@ const Header = () => {
             <S.NavDesktop>
               <S.Links>
                 <li><Link to="/category">Categoria</Link></li>
-                <li><Link to="#">Novidade</Link></li>
-                <li><Link to="#">Promoções</Link></li>
+                <li><HashLink to="/#coming-soon">Novidade</HashLink></li>
+                <li><HashLink to="/#on-sale">Promoções</HashLink></li>
               </S.Links>
             </S.NavDesktop>
           </S.NavbarHeader>
@@ -48,13 +49,13 @@ const Header = () => {
 
         <S.NavMobile className={hambuguerActive ? "active" : ""}>
           <S.Links>
-            <li><Link to="/category">Categoria</Link></li>
-            <li><Link to="#">Novidade</Link></li>
-            <li><Link to="#">Promoções</Link></li>
+            <li><Link to="/category" onClick={() => setHambuguerActive(false)}>Categoria</Link></li>
+            <li><HashLink to="/#coming-soon" onClick={() => setHambuguerActive(false)}>Novidade</HashLink></li>
+            <li><HashLink to="/#on-sale" onClick={() => setHambuguerActive(false)}>Promoções</HashLink></li>
           </S.Links>
         </S.NavMobile>
       </S.HeaderBar>
-    </Container>
+    </Container >
   )
 };
 

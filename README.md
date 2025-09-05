@@ -194,3 +194,9 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - extrair e utilizar os dados recebidos como resposta de uma API após a conclusão de uma solicitação;
 - fazer melhorias na interface do usuário;
 - renderizar elementos com base no estado da aplicação.
+
+## ✏️ Aula 7 - Faça melhorias - Parte I
+
+- realizar melhorias no código, incluindo a remoção de importações e variáveis não utilizadas;
+- fazer melhorias visuais e comportamentais para aprimorar a experiência do usuário;
+- manipular estilos e interatividade em elementos da página.

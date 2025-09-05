@@ -1,12 +1,12 @@
 import useAttributesGames from "../../hooks/useAttributesGames";
 import { useGetFeaturedGamesQuery } from "../../services/api";
-import { Container } from "../../styles/GlobalStyles";
 import Button from "../Button";
 import Tag from "../Tag";
+import { Container } from "../../styles/GlobalStyles";
 import * as S from "./BannerStyled";
 
 const Banner = () => {
-  const { data: gameDestaque, isLoading } = useGetFeaturedGamesQuery();
+  const { data: gameDestaque } = useGetFeaturedGamesQuery();
   const { formatPrice } = useAttributesGames();
 
   if (!gameDestaque) {

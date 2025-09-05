@@ -10,18 +10,18 @@ const Footer = () => (
       <S.SectionFooter>
         <S.Title>Categoria</S.Title>
         <S.List>
-          <HashLink to="/category#rpg"><li>RPG</li></HashLink>
-          <HashLink to="/category#action"><li>Ação</li></HashLink>
-          <HashLink to="/category#sports"><li>Esportes</li></HashLink>
-          <HashLink to="/category#simulation"><li>Simulação</li></HashLink>
-          <HashLink to="/category#figth"><li>Luta</li></HashLink>
+          <li><HashLink to="/category#rpg">RPG</HashLink></li>
+          <li><HashLink to="/category#action">Ação</HashLink></li>
+          <li><HashLink to="/category#sports">Esportes</HashLink></li>
+          <li><HashLink to="/category#simulation">Simulação</HashLink></li>
+          <li><HashLink to="/category#figth">Luta</HashLink></li>
         </S.List>
       </S.SectionFooter>
       <S.SectionFooter>
         <S.Title>Acesso Rápido</S.Title>
         <S.List>
-          <HashLink to="/#on-sale"><li>Promoções</li></HashLink>
-          <HashLink to="/#coming-soon"><li>Em breve</li></HashLink>
+          <li><HashLink to="/#on-sale">Promoções</HashLink></li>
+          <li><HashLink to="/#coming-soon">Em breve</HashLink></li>
         </S.List>
       </S.SectionFooter>
       <p>{currentDate} - © E-PLAY Todos os direitos reservados</p>

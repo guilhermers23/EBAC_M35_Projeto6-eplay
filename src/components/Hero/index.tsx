@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
-import useAttributesGames from "../../hooks/useAttributesGames";
 import type { IGame } from "../../interfaces/IGame";
-import { Container } from "../../styles/GlobalStyles";
+import useAttributesGames from "../../hooks/useAttributesGames";
+import { addItemCart, openCart } from "../../store/reducers/cart";
 import Button from "../Button";
 import Tag from "../Tag";
+import { Container } from "../../styles/GlobalStyles";
 import * as S from "./HeroStyled";
-import { addItemCart, openCart } from "../../store/reducers/cart";
 
 type PropsHero = { game: IGame };
 
