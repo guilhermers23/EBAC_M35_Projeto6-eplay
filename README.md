@@ -187,3 +187,10 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - aprender os conceitos fundamentais de integração de uma aplicação React com uma API externa;
 - implementar requisições post;
 - manipular os dados recebidos como resposta da API após uma requisição bem-sucedida.
+
+## ✏️ Aula 6 - Crie a tela de confirmação do pedido
+
+- exibir diferentes componentes ou conteúdos com base nas condições definidas;
+- extrair e utilizar os dados recebidos como resposta de uma API após a conclusão de uma solicitação;
+- fazer melhorias na interface do usuário;
+- renderizar elementos com base no estado da aplicação.

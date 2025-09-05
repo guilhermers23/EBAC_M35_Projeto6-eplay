@@ -2,16 +2,16 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import { FaCreditCard } from "react-icons/fa";
 import { IoBarcodeSharp } from "react-icons/io5";
+import { usePurchaseMutation } from "../../services/api";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./CheckoutStyled";
 import * as Yup from "yup";
-import { usePurchaseMutation } from "../../services/api";
 
 export const Checkout = () => {
   const [payWithCard, setPayWithCard] = useState(false);
-  const [purchase, { isLoading, isError, data }] = usePurchaseMutation();
+  const [purchase, { isLoading, isError, isSuccess, data }] = usePurchaseMutation();
 
   const formAttributes = useFormik({
     initialValues: {
@@ -86,173 +86,212 @@ export const Checkout = () => {
   };
 
   return (
-    <Container as="form" onSubmit={formAttributes.handleSubmit}>
-      <Card title="Dados de cobrança">
-        <>
-          <S.Row>
-            <S.InputGrup>
-              <label htmlFor="name">Nome Completo</label>
-              <input id="name" type="text"
-                value={formAttributes.values.name}
-                onChange={formAttributes.handleChange}
-                onBlur={formAttributes.handleBlur} />
-              {getErrorMessage('name', formAttributes.errors.name)}
-            </S.InputGrup>
+    <Container>
+      {isSuccess && data ? (
+        <Card title="Muito obrigado pela sua compra!">
+          <>
+            <p>
+              É com satisfação que informamos que recebemos seu pedido com
+              sucesso! <br />
+              Abaixo estão os detalhes da sua compra: <br />
+              Número do pedido: {data.orderId} <br />
+              Forma de pagamento:{' '}
+              {payWithCard ? 'Cartão de crédito' : 'Boleto Bancário'}
+            </p>
+            <p style={{ marginTop: '24px' }}>
+              Caso tenha optado pelo pagamento via boleto bancário, lembre-se de
+              que a confirmação pode levar até 3 dias úteis. Após a aprovação do
+              pagamento, enviaremos um e-mail contendo o código de ativação do
+              jogo.
+            </p>
+            <p style={{ marginTop: '24px' }}>
+              Se você optou pelo pagamento com cartão de crédito, a liberação do
+              código de ativação ocorrerá após a aprovação da transação pela
+              operadora do cartão. Você receberá o código no e-mail cadastrado
+              em nossa loja.
+            </p>
+            <p style={{ marginTop: '24px' }}>
+              Pedimos que verifique sua caixa de entrada e a pasta de spam para
+              garantir que receba nossa comunicação. Caso tenha alguma dúvida ou
+              necessite de mais informações, por favor, entre em contato conosco
+              através dos nossos canais de atendimento ao cliente
+            </p>
+            <p style={{ marginTop: '24px' }}>
+              Agradecemos por escolher a EPLAY e esperamos que desfrute do seu
+              jogo!
+            </p>
+          </>
+        </Card>
+      ) : (
+        <form onSubmit={formAttributes.handleSubmit}>
+          <Card title="Dados de cobrança">
+            <>
+              <S.Row>
+                <S.InputGrup>
+                  <label htmlFor="name">Nome Completo</label>
+                  <input id="name" type="text"
+                    value={formAttributes.values.name}
+                    onChange={formAttributes.handleChange}
+                    onBlur={formAttributes.handleBlur} />
+                  {getErrorMessage('name', formAttributes.errors.name)}
+                </S.InputGrup>
 
-            <S.InputGrup>
-              <label htmlFor="email">E-mail</label>
-              <input id="email" type="email"
-                value={formAttributes.values.email}
-                onChange={formAttributes.handleChange}
-                onBlur={formAttributes.handleBlur} />
-              {getErrorMessage('email', formAttributes.errors.email)}
-            </S.InputGrup>
+                <S.InputGrup>
+                  <label htmlFor="email">E-mail</label>
+                  <input id="email" type="email"
+                    value={formAttributes.values.email}
+                    onChange={formAttributes.handleChange}
+                    onBlur={formAttributes.handleBlur} />
+                  {getErrorMessage('email', formAttributes.errors.email)}
+                </S.InputGrup>
 
-            <S.InputGrup>
-              <label htmlFor="cpf">CPF</label>
-              <input id="cpf" type="text"
-                value={formAttributes.values.cpf}
-                onChange={formAttributes.handleChange}
-                onBlur={formAttributes.handleBlur} />
-              {getErrorMessage('cpf', formAttributes.errors.cpf)}
-            </S.InputGrup>
-          </S.Row>
+                <S.InputGrup>
+                  <label htmlFor="cpf">CPF</label>
+                  <input id="cpf" type="text"
+                    value={formAttributes.values.cpf}
+                    onChange={formAttributes.handleChange}
+                    onBlur={formAttributes.handleBlur} />
+                  {getErrorMessage('cpf', formAttributes.errors.cpf)}
+                </S.InputGrup>
+              </S.Row>
 
-          <h3 style={{ marginTop: '24px' }}>Dados de entrega - conteúdo digital</h3>
-          <S.Row>
-            <S.InputGrup>
-              <label htmlFor="deliveryEmail">E-mail de envio</label>
-              <input type="email" id="deliveryEmail"
-                value={formAttributes.values.deliveryEmail}
-                onChange={formAttributes.handleChange}
-                onBlur={formAttributes.handleBlur} />
-              {getErrorMessage('deliveryEmail', formAttributes.errors.deliveryEmail)}
-            </S.InputGrup>
+              <h3 style={{ marginTop: '24px' }}>Dados de entrega - conteúdo digital</h3>
+              <S.Row>
+                <S.InputGrup>
+                  <label htmlFor="deliveryEmail">E-mail de envio</label>
+                  <input type="email" id="deliveryEmail"
+                    value={formAttributes.values.deliveryEmail}
+                    onChange={formAttributes.handleChange}
+                    onBlur={formAttributes.handleBlur} />
+                  {getErrorMessage('deliveryEmail', formAttributes.errors.deliveryEmail)}
+                </S.InputGrup>
 
-            <S.InputGrup>
-              <label htmlFor="confirmDeliveryEmail">Confirmar E-mail</label>
-              <input type="email" id="confirmDeliveryEmail"
-                value={formAttributes.values.confirmDeliveryEmail}
-                onChange={formAttributes.handleChange}
-                onBlur={formAttributes.handleBlur} />
-              {getErrorMessage('confirmDeliveryEmail', formAttributes.errors.confirmDeliveryEmail)}
-            </S.InputGrup>
-          </S.Row>
-        </>
-      </Card>
+                <S.InputGrup>
+                  <label htmlFor="confirmDeliveryEmail">Confirmar E-mail</label>
+                  <input type="email" id="confirmDeliveryEmail"
+                    value={formAttributes.values.confirmDeliveryEmail}
+                    onChange={formAttributes.handleChange}
+                    onBlur={formAttributes.handleBlur} />
+                  {getErrorMessage('confirmDeliveryEmail', formAttributes.errors.confirmDeliveryEmail)}
+                </S.InputGrup>
+              </S.Row>
+            </>
+          </Card>
 
-      <Card title="Pagamento">
-        <>
-          <S.Payments>
-            <S.TabButton isActive={payWithCard}
-              onClick={() => setPayWithCard(false)}>
-              <IoBarcodeSharp />
-              Boleto bancário
-            </S.TabButton>
-            <S.TabButton isActive={!payWithCard}
-              onClick={() => setPayWithCard(true)}>
-              <FaCreditCard />
-              Cartäo de crédito
-            </S.TabButton>
-          </S.Payments>
+          <Card title="Pagamento">
+            <>
+              <S.Payments>
+                <S.TabButton isActive={payWithCard}
+                  onClick={() => setPayWithCard(false)}>
+                  <IoBarcodeSharp />
+                  Boleto bancário
+                </S.TabButton>
+                <S.TabButton isActive={!payWithCard}
+                  onClick={() => setPayWithCard(true)}>
+                  <FaCreditCard />
+                  Cartäo de crédito
+                </S.TabButton>
+              </S.Payments>
 
-          <S.InputGrup>
-            {payWithCard ? (
-              <>
-                {/* Seção Cartão */}
-                <S.Row>
-                  <S.InputGrup>
-                    <label htmlFor="cardOwner">Nome do titular do cartão</label>
-                    <input id="cardOwner" type="text"
-                      value={formAttributes.values.cardOwner}
-                      onChange={formAttributes.handleChange}
-                      onBlur={formAttributes.handleBlur} />
-                    {getErrorMessage('cardOwner', formAttributes.errors.cardOwner)}
-                  </S.InputGrup>
+              <S.InputGrup>
+                {payWithCard ? (
+                  <>
+                    {/* Seção Cartão */}
+                    <S.Row>
+                      <S.InputGrup>
+                        <label htmlFor="cardOwner">Nome do titular do cartão</label>
+                        <input id="cardOwner" type="text"
+                          value={formAttributes.values.cardOwner}
+                          onChange={formAttributes.handleChange}
+                          onBlur={formAttributes.handleBlur} />
+                        {getErrorMessage('cardOwner', formAttributes.errors.cardOwner)}
+                      </S.InputGrup>
 
-                  <S.InputGrup>
-                    <label htmlFor="cpfCardOwner">CPF do titular do cartão</label>
-                    <input id="cpfCardOwner" type="text"
-                      value={formAttributes.values.cpfCardOwner}
-                      onChange={formAttributes.handleChange}
-                      onBlur={formAttributes.handleBlur} />
-                    {getErrorMessage('cpfCardOwner', formAttributes.errors.cpfCardOwner)}
-                  </S.InputGrup>
-                </S.Row>
+                      <S.InputGrup>
+                        <label htmlFor="cpfCardOwner">CPF do titular do cartão</label>
+                        <input id="cpfCardOwner" type="text"
+                          value={formAttributes.values.cpfCardOwner}
+                          onChange={formAttributes.handleChange}
+                          onBlur={formAttributes.handleBlur} />
+                        {getErrorMessage('cpfCardOwner', formAttributes.errors.cpfCardOwner)}
+                      </S.InputGrup>
+                    </S.Row>
 
-                <S.Row style={{ marginTop: "24px" }}>
-                  <S.InputGrup>
-                    <label htmlFor="cardDisplayName">Nome no cartão</label>
-                    <input id="cardDisplayName" type="text"
-                      value={formAttributes.values.cardDisplayName}
-                      onChange={formAttributes.handleChange}
-                      onBlur={formAttributes.handleBlur} />
-                    {getErrorMessage('cardDisplayName', formAttributes.errors.cardDisplayName)}
-                  </S.InputGrup>
+                    <S.Row style={{ marginTop: "24px" }}>
+                      <S.InputGrup>
+                        <label htmlFor="cardDisplayName">Nome no cartão</label>
+                        <input id="cardDisplayName" type="text"
+                          value={formAttributes.values.cardDisplayName}
+                          onChange={formAttributes.handleChange}
+                          onBlur={formAttributes.handleBlur} />
+                        {getErrorMessage('cardDisplayName', formAttributes.errors.cardDisplayName)}
+                      </S.InputGrup>
 
-                  <S.InputGrup>
-                    <label htmlFor="cardNumber">Número do cartão</label>
-                    <input id="cardNumber" type="text"
-                      value={formAttributes.values.cardNumber}
-                      onChange={formAttributes.handleChange}
-                      onBlur={formAttributes.handleBlur} />
-                    {getErrorMessage('cardNumber', formAttributes.errors.cardNumber)}
-                  </S.InputGrup>
+                      <S.InputGrup>
+                        <label htmlFor="cardNumber">Número do cartão</label>
+                        <input id="cardNumber" type="text"
+                          value={formAttributes.values.cardNumber}
+                          onChange={formAttributes.handleChange}
+                          onBlur={formAttributes.handleBlur} />
+                        {getErrorMessage('cardNumber', formAttributes.errors.cardNumber)}
+                      </S.InputGrup>
 
-                  <S.InputGrup style={{ maxWidth: "123px" }}>
-                    <label htmlFor="expiresMonth">Mês de expiração</label>
-                    <input id="expiresMonth" type="text"
-                      value={formAttributes.values.expiresMonth}
-                      onChange={formAttributes.handleChange}
-                      onBlur={formAttributes.handleBlur} />
-                    {getErrorMessage('cardOwner', formAttributes.errors.cardOwner)}
-                  </S.InputGrup>
+                      <S.InputGrup style={{ maxWidth: "123px" }}>
+                        <label htmlFor="expiresMonth">Mês de expiração</label>
+                        <input id="expiresMonth" type="text"
+                          value={formAttributes.values.expiresMonth}
+                          onChange={formAttributes.handleChange}
+                          onBlur={formAttributes.handleBlur} />
+                        {getErrorMessage('cardOwner', formAttributes.errors.cardOwner)}
+                      </S.InputGrup>
 
-                  <S.InputGrup style={{ maxWidth: "123px" }}>
-                    <label htmlFor="expiresYear">Ano de expiração</label>
-                    <input id="expiresYear" type="text"
-                      value={formAttributes.values.expiresYear}
-                      onChange={formAttributes.handleChange}
-                      onBlur={formAttributes.handleBlur} />
-                    {getErrorMessage('expiresYear', formAttributes.errors.expiresYear)}
-                  </S.InputGrup>
+                      <S.InputGrup style={{ maxWidth: "123px" }}>
+                        <label htmlFor="expiresYear">Ano de expiração</label>
+                        <input id="expiresYear" type="text"
+                          value={formAttributes.values.expiresYear}
+                          onChange={formAttributes.handleChange}
+                          onBlur={formAttributes.handleBlur} />
+                        {getErrorMessage('expiresYear', formAttributes.errors.expiresYear)}
+                      </S.InputGrup>
 
-                  <S.InputGrup style={{ maxWidth: "48px" }}>
-                    <label htmlFor="cardCode">CVV</label>
-                    <input id="cardCode" type="number"
-                      value={formAttributes.values.cardCode}
-                      onChange={formAttributes.handleChange}
-                      onBlur={formAttributes.handleBlur} />
-                    {getErrorMessage('cardCode', formAttributes.errors.cardCode)}
-                  </S.InputGrup>
-                </S.Row>
+                      <S.InputGrup style={{ maxWidth: "48px" }}>
+                        <label htmlFor="cardCode">CVV</label>
+                        <input id="cardCode" type="number"
+                          value={formAttributes.values.cardCode}
+                          onChange={formAttributes.handleChange}
+                          onBlur={formAttributes.handleBlur} />
+                        {getErrorMessage('cardCode', formAttributes.errors.cardCode)}
+                      </S.InputGrup>
+                    </S.Row>
 
-                <S.Row style={{ marginTop: "24px" }}>
-                  <S.InputGrup style={{ maxWidth: "150px" }}>
-                    <label htmlFor="installmenst">Parcelamento</label>
-                    <select id="installmenst"
-                      name="installments"
-                      value={formAttributes.values.installments}
-                      onChange={formAttributes.handleChange}
-                      onBlur={formAttributes.handleBlur} >
-                      <option value="1x">1X de R$ 200,00</option>
-                      <option value="2x">2X de R$ 100,00</option>
-                      <option value="3x">3X de R$ 66,66</option>
-                    </select>
-                    {getErrorMessage('installments', formAttributes.errors.installments)}
-                  </S.InputGrup>
-                </S.Row>
-              </>
-            ) : (
-              <p>
-                Ao optar por essa forma de pagamento, é importante lembrar que a confirmação pode levar até 3 dias úteis, devido aos prazos estabelecidos pelas instituições financeiras. Portanto, a liberação do código de ativação do jogo adquirido ocorrerá somente após a aprovação do pagamento do boleto.
-              </p>
-            )}
-          </S.InputGrup>
-        </>
-      </Card>
-      <Button title="Finalizar compra" type="submit"
-        variantbutton="primary">Finalizar compra</Button>
-    </Container >
+                    <S.Row style={{ marginTop: "24px" }}>
+                      <S.InputGrup style={{ maxWidth: "150px" }}>
+                        <label htmlFor="installmenst">Parcelamento</label>
+                        <select id="installmenst"
+                          name="installments"
+                          value={formAttributes.values.installments}
+                          onChange={formAttributes.handleChange}
+                          onBlur={formAttributes.handleBlur} >
+                          <option value="1x">1X de R$ 200,00</option>
+                          <option value="2x">2X de R$ 100,00</option>
+                          <option value="3x">3X de R$ 66,66</option>
+                        </select>
+                        {getErrorMessage('installments', formAttributes.errors.installments)}
+                      </S.InputGrup>
+                    </S.Row>
+                  </>
+                ) : (
+                  <p>
+                    Ao optar por essa forma de pagamento, é importante lembrar que a confirmação pode levar até 3 dias úteis, devido aos prazos estabelecidos pelas instituições financeiras. Portanto, a liberação do código de ativação do jogo adquirido ocorrerá somente após a aprovação do pagamento do boleto.
+                  </p>
+                )}
+              </S.InputGrup>
+            </>
+          </Card>
+          <Button title="Finalizar compra" type="submit"
+            variantbutton="primary">Finalizar compra</Button>
+        </form >
+      )}
+    </Container>
   )
 };
