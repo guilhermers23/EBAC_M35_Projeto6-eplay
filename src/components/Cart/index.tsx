@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { closeCart } from "../../store/reducers/cart";
 import type { RootReducer } from "../../store";
-import useAttributesGames from "../../hooks/useAttributesGames";
+import { parseToBrl } from "../../utils";
 import Button from "../Button";
 import ItemCart from "./ItemCart";
 import { Overlay } from "../../styles/GlobalStyles";
@@ -10,7 +10,6 @@ import * as S from "./CartStyled";
 const Cart = () => {
   const dispatch = useDispatch();
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart);
-  const { formatPrice } = useAttributesGames();
   const plural = items.length === 1 ? "jogo" : "jogos";
   const close = () => dispatch(closeCart());
 
@@ -32,11 +31,11 @@ const Cart = () => {
               category={game.details.category}
               cover={game.media.thumbnail}
               title={game.name}
-              price={formatPrice(game.prices.current)} />
+              price={parseToBrl(game.prices.current)} />
           )}
         </ul>
         <S.Amount>{items.length} {plural} no carrinho</S.Amount>
-        <S.Prices>Total {formatPrice(getTotalPrice())}
+        <S.Prices>Total {parseToBrl(getTotalPrice())}
           <span>Em até 6x sem juros</span></S.Prices>
         <Button title="Continuar compra" variantbutton="primary"
           type="button">Continuar com a compra</Button>

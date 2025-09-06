@@ -1,5 +1,5 @@
 import type { IGame } from "../../interfaces/IGame";
-import useAttributesGames from "../../hooks/useAttributesGames";
+import { getAllTagsGames } from "../../utils";
 import Product from "../../components/Product";
 import Section from "../../components/Section";
 import * as S from "./ProductListStyled";
@@ -7,7 +7,6 @@ import * as S from "./ProductListStyled";
 export type PropsProductList = { title: string; background: "gray" | "black"; games: IGame[]; sectionid?: string };
 
 const ProductList = ({ title, background, games, sectionid }: PropsProductList) => {
-  const { getAllTagsGames } = useAttributesGames();
 
   return (
     <Section title={title} background={background} id={sectionid}>

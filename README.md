@@ -200,3 +200,9 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - realizar melhorias no código, incluindo a remoção de importações e variáveis não utilizadas;
 - fazer melhorias visuais e comportamentais para aprimorar a experiência do usuário;
 - manipular estilos e interatividade em elementos da página.
+
+## ✏️ Aula 7 - Faça melhorias - Parte II
+
+- compreender a importância da padronização na nomenclatura de elementos, variáveis e componentes em um projeto React;
+- entender como refatorar o código para uma melhor organização;
+- fazer melhorias funcionais na aplicação.

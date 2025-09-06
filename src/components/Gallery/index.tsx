@@ -55,7 +55,7 @@ const Gallery = ({ defaultCover, name, midias }: Props) => {
           }
 
         </S.ModalContent>
-        <Overlay onClick={() => closeModal()} />
+        <Overlay onClick={closeModal} />
       </S.Modal >
     </>
   )

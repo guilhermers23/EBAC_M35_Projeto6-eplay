@@ -26,6 +26,6 @@ export const List = styled.ul`
   flex-wrap: wrap;
 
   li{
-    color: ${colors.gray2};
+    color: ${colors.ligthGray};
   }
 `

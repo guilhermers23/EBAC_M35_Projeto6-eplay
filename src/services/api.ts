@@ -72,7 +72,7 @@ const API = createApi({
       query: (data) => ({
         url: "checkout",
         method: "POST",
-        body: data
+        body: data,
       })
     })
   })

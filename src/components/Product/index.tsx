@@ -1,3 +1,4 @@
+import { textLimit } from "../../utils";
 import Tag from "../Tag";
 import * as S from "./ProductStyled";
 
@@ -12,12 +13,6 @@ type Props = {
 };
 
 const Product = ({ id, title, cover, category, plataform, infos, description }: Props) => {
-  const textLimit = (description: string) => {
-    if (description.length > 95) {
-      return description.slice(0, 92) + '...'
-    }
-    return description;
-  };
 
   return (
     <S.Card to={`/product/${id}`}>

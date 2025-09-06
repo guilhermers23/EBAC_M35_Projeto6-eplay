@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { colors } from "../../styles/GlobalStyles";
 import { Button } from "../Button/ButtonStyled";
 import { TagContainer } from "../Tag/TagStyled";
-import close from "../../assets/imgs/close.png";
+import closeIcon from "../../assets/imgs/close.png";
+
 type Props = { isopen: boolean };
 
 export const CartContainer = styled.div<Props>`
@@ -36,7 +37,7 @@ export const Prices = styled.p`
   span{
     display: block;
     font-size: 12px;
-    color: ${colors.gray2};
+    color: ${colors.ligthGray};
   }
 `
 
@@ -50,7 +51,7 @@ export const Amount = styled.p`
 
 export const CartItem = styled.li`
   display: flex;
-  border-bottom: 1px solid ${colors.gray2};
+  border-bottom: 1px solid ${colors.ligthGray};
   padding: 8px 0;
   position: relative;
 
@@ -81,7 +82,7 @@ export const CartItem = styled.li`
   }
 
   button {
-    background-image: url(${close});
+    background-image: url(${closeIcon});
     width: 16px;
     height: 16px;
     border: none;

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import type { IGame } from "../../interfaces/IGame";
-import useAttributesGames from "../../hooks/useAttributesGames";
 import { addItemCart, openCart } from "../../store/reducers/cart";
+import { parseToBrl } from "../../utils";
 import Button from "../Button";
 import Tag from "../Tag";
 import { Container } from "../../styles/GlobalStyles";
@@ -11,7 +11,6 @@ type PropsHero = { game: IGame };
 
 const Hero = ({ game }: PropsHero) => {
   const dispacth = useDispatch();
-  const { formatPrice } = useAttributesGames();
 
   const addToCart = () => {
     dispacth(addItemCart(game))
@@ -31,10 +30,10 @@ const Hero = ({ game }: PropsHero) => {
           <p>
             {game.prices.discount &&
               <>
-                De < span > R$ {formatPrice(game.prices.old)} </span> <br />
+                De < span > R$ {parseToBrl(game.prices.old)} </span> <br />
               </>
             }
-            {game.prices.current ? <>Por {formatPrice(game.prices.current)}</> : <>Em Breve</>}
+            {game.prices.current ? <>Por {parseToBrl(game.prices.current)}</> : <>Em Breve</>}
           </p>
           <Button title="Adiconar item ao carrinho"
             type="button"
