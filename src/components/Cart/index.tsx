@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { closeCart } from "../../store/reducers/cart";
 import type { RootReducer } from "../../store";
 import useAttributesGames from "../../hooks/useAttributesGames";
@@ -9,14 +10,23 @@ import * as S from "./CartStyled";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart);
   const { formatPrice } = useAttributesGames();
   const plural = items.length === 1 ? "jogo" : "jogos";
   const close = () => dispatch(closeCart());
 
+  const goToCheckout = () => {
+    navigate("/checkout");
+    close();
+  };
+
   const getTotalPrice = () => {
     return items.reduce((acc, currentValue) => {
-      return (acc += currentValue.prices.current!)
+      if (currentValue.prices.current) {
+        return (acc += currentValue.prices.current)
+      }
+      return 0;
     }, 0)
   };
 
@@ -39,7 +49,8 @@ const Cart = () => {
         <S.Prices>Total {formatPrice(getTotalPrice())}
           <span>Em até 6x sem juros</span></S.Prices>
         <Button title="Continuar compra" variantbutton="primary"
-          type="button">Continuar com a compra</Button>
+          type="button"
+          onClick={goToCheckout}>Continuar com a compra</Button>
       </S.Siderbar>
     </S.CartContainer>
   )

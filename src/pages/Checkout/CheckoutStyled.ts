@@ -23,6 +23,10 @@ export const InputGrup = styled.div`
     height: 32px;
     padding: 0 8px;
     width: 100%;
+
+    &.error{
+      border: 1px solid ${colors.red};
+    }
   }
 
   p{
