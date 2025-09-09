@@ -3,17 +3,22 @@ import ProductList from "../../containers/ProductList";
 import { useGetComingSoonGamesQuery, useGetSaleGamesQuery } from "../../services/api";
 
 export const Home = () => {
-  const { data: gamesSale } = useGetSaleGamesQuery();
-  const { data: gamesComingSoon } = useGetComingSoonGamesQuery();
+  const { data: gamesSale, isLoading: isLoadingSale } = useGetSaleGamesQuery();
+  const { data: gamesComingSoon, isLoading: isLoadingSoon } = useGetComingSoonGamesQuery();
 
-  if (gamesComingSoon && gamesSale) {
-    return (
-      <>
-        <Banner />
-        <ProductList games={gamesSale} title="Promoções" background="gray" sectionid="on-sale" />
-        <ProductList games={gamesComingSoon} title="Em Breve" background="black" sectionid="coming-soon" />
-      </>
-    )
-  }
-  return <h3>Carregando...</h3>
+  return (
+    <>
+      <Banner />
+      <ProductList title="Promoções"
+        games={gamesSale}
+        background="gray"
+        isLoading={isLoadingSale}
+        sectionid="on-sale" />
+      <ProductList title="Em Breve"
+        games={gamesComingSoon}
+        background="black"
+        isLoading={isLoadingSoon}
+        sectionid="coming-soon" />
+    </>
+  )
 };

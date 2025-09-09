@@ -1,6 +1,7 @@
 import { useGetFeaturedGamesQuery } from "../../services/api";
 import { parseToBrl } from "../../utils";
 import Button from "../Button";
+import Loader from "../Loader";
 import Tag from "../Tag";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./BannerStyled";
@@ -8,9 +9,7 @@ import * as S from "./BannerStyled";
 const Banner = () => {
   const { data: gameDestaque } = useGetFeaturedGamesQuery();
 
-  if (!gameDestaque) {
-    return <h1>Carregando...</h1>
-  };
+  if (!gameDestaque) return <Loader />;
 
   return (
     <S.Imagem style={{ backgroundImage: `url(${gameDestaque.media.cover})` }}>

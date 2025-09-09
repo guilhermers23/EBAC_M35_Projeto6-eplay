@@ -212,3 +212,12 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - compreender os problemas que podem surgir quando o carrinho não é validado corretamente;
 - adicionar mensagens de erro e garantir que a formatação dos elementos seja adequada;
 - usar uma função que verifica se o carrinho está vazio e, se estiver, redireciona o usuário para outra página.
+
+## ✏️ Aula 10 - Adicione loaders
+
+- conhecer o pacote react spinners;
+- diferenciar yarn add do npm;
+- compreender a importância de adicionar loaders em uma aplicação web;
+- importar e usar bibliotecas de loaders em componentes React;
+- personalizar a aparência e o comportamento dos loaders para se adequar ao design da aplicação;
+- implementar loaders em diferentes partes da aplicação.

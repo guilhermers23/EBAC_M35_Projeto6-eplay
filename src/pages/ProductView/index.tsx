@@ -3,12 +3,14 @@ import { useGetGameByIdQuery } from "../../services/api";
 import Hero from "../../components/Hero";
 import Section from "../../components/Section";
 import Gallery from "../../components/Gallery";
+import Loader from "../../components/Loader";
 
+type GameParams = { id: string };
 export const ProductView = () => {
-  const { id } = useParams();
-  const { data: game } = useGetGameByIdQuery(id!);
+  const { id } = useParams() as GameParams;
+  const { data: game } = useGetGameByIdQuery(id);
 
-  if (!game) return <h3>Carregando...</h3>
+  if (!game) return <Loader />;
 
   return (
     <>
