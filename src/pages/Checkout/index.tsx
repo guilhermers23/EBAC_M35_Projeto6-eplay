@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router";
 import * as Yup from "yup";
 import { IoBarcodeSharp } from "react-icons/io5";
 import { FaCreditCard } from "react-icons/fa";
+import { getTotalPrice, parseToBrl } from "../../utils";
 import { usePurchaseMutation } from "../../services/api";
 import type { RootReducer } from "../../store";
 import Button from "../../components/Button";
@@ -12,10 +13,14 @@ import Card from "../../components/Card";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./CheckoutStyled";
 
+type Installments = { quantity: number, amount: number, formattedAmount: string };
+
 export const Checkout = () => {
   const { items } = useSelector((state: RootReducer) => state.cart);
   const [payWithCard, setPayWithCard] = useState(false);
+  const [installments, setInstallments] = useState<Installments[]>();
   const [purchase, { isSuccess, data }] = usePurchaseMutation();
+  const totalPrice = getTotalPrice(items);
 
   const formAttributes = useFormik({
     initialValues: {
@@ -86,6 +91,24 @@ export const Checkout = () => {
     const hasError = isTouched && isInvalid;
     return hasError;
   };
+
+  useEffect(() => {
+    //Método para calcular as parcelas
+    const calculateInstallments = () => {
+      const arrayInstalments: Installments[] = [];
+      for (let i = 1; i <= 6; i++) {
+        arrayInstalments.push({
+          quantity: i,
+          amount: totalPrice / i,
+          formattedAmount: parseToBrl(totalPrice / i)
+        })
+      }
+      return arrayInstalments;
+    }
+    if (totalPrice > 0) {
+      setInstallments(calculateInstallments())
+    }
+  }, [totalPrice]);
 
   if (items.length === 0) return <Navigate to='/' />;
 
@@ -185,12 +208,12 @@ export const Checkout = () => {
           <Card title="Pagamento">
             <>
               <S.Payments>
-                <S.TabButton isActive={payWithCard}
+                <S.TabButton isActive={payWithCard} type="button"
                   onClick={() => setPayWithCard(false)}>
                   <IoBarcodeSharp />
                   Boleto bancário
                 </S.TabButton>
-                <S.TabButton isActive={!payWithCard}
+                <S.TabButton isActive={!payWithCard} type="button"
                   onClick={() => setPayWithCard(true)}>
                   <FaCreditCard />
                   Cartäo de crédito
@@ -277,9 +300,11 @@ export const Checkout = () => {
                           onChange={formAttributes.handleChange}
                           onBlur={formAttributes.handleBlur}
                           className={checkInputHasError('installments') ? 'error' : ''}>
-                          <option value="1x">1X de R$ 200,00</option>
-                          <option value="2x">2X de R$ 100,00</option>
-                          <option value="3x">3X de R$ 66,66</option>
+                          {installments?.map((item) =>
+                            <option key={item.quantity} value={item.quantity} >
+                              {item.quantity}X de {item.formattedAmount}
+                            </option>
+                          )}
                         </select>
                       </S.InputGrup>
                     </S.Row>

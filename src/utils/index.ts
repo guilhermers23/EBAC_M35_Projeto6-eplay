@@ -28,3 +28,12 @@ export const textLimit = (text: string) => {
   }
   return text;
 };
+
+export const getTotalPrice = (items: IGame[]) => {
+  return items.reduce((acc, currentValue) => {
+    if (currentValue.prices.current) {
+      return (acc += currentValue.prices.current)
+    }
+    return 0;
+  }, 0)
+};

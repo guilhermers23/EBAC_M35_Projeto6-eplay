@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { closeCart } from "../../store/reducers/cart";
 import type { RootReducer } from "../../store";
-import { parseToBrl } from "../../utils";
+import { getTotalPrice, parseToBrl } from "../../utils";
 import Button from "../Button";
 import ItemCart from "./ItemCart";
 import { Overlay } from "../../styles/GlobalStyles";
@@ -20,36 +20,32 @@ const Cart = () => {
     close();
   };
 
-  const getTotalPrice = () => {
-    return items.reduce((acc, currentValue) => {
-      if (currentValue.prices.current) {
-        return (acc += currentValue.prices.current)
-      }
-      return 0;
-    }, 0)
-  };
-
   return (
     <S.CartContainer isopen={isOpen}>
       <Overlay onClick={close} />
       <S.Siderbar>
-        <ul>
-          {items.map(game =>
-            <ItemCart key={game.id}
-              plataform={game.details.system}
-              id={game.id}
-              category={game.details.category}
-              cover={game.media.thumbnail}
-              title={game.name}
-              price={parseToBrl(game.prices.current)} />
-          )}
-        </ul>
-        <S.Amount>{items.length} {plural} no carrinho</S.Amount>
-        <S.Prices>Total {parseToBrl(getTotalPrice())}
-          <span>Em até 6x sem juros</span></S.Prices>
-        <Button title="Continuar compra" variantbutton="primary"
-          type="button"
-          onClick={goToCheckout}>Continuar com a compra</Button>
+        {items.length === 0 ? <h3>Seu carrinho está vazio! 🤔</h3> : (
+          <>
+            <ul>
+              {items.map(game =>
+                <ItemCart key={game.id}
+                  plataform={game.details.system}
+                  id={game.id}
+                  category={game.details.category}
+                  cover={game.media.thumbnail}
+                  title={game.name}
+                  price={parseToBrl(game.prices.current)} />
+              )}
+            </ul>
+            <S.Amount>{items.length} {plural} no carrinho</S.Amount>
+            <S.Prices>Total {parseToBrl(getTotalPrice(items))}
+              <span>Em até 6x sem juros</span></S.Prices>
+            <Button title="Continuar compra" variantbutton="primary"
+              type="button"
+              onClick={goToCheckout}>Continuar com a compra</Button>
+          </>
+        )
+        }
       </S.Siderbar>
     </S.CartContainer>
   )

@@ -10,7 +10,7 @@ export type PropsButton = {
 
 const Button = ({ children, type, title, onClick, to, variantbutton }: PropsButton) => {
   if (type === "link") {
-    return <S.ButtonLink to={to as string} title={title}>{children}</S.ButtonLink>
+    return <S.ButtonLink to={to as string} type="link" title={title}>{children}</S.ButtonLink>
   };
   return <S.Button type={type} variantbutton={variantbutton} title={title} onClick={onClick}>{children}</S.Button>
 };

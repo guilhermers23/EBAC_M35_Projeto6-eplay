@@ -201,8 +201,14 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - fazer melhorias visuais e comportamentais para aprimorar a experiência do usuário;
 - manipular estilos e interatividade em elementos da página.
 
-## ✏️ Aula 7 - Faça melhorias - Parte II
+## ✏️ Aula 8 - Faça melhorias - Parte II
 
 - compreender a importância da padronização na nomenclatura de elementos, variáveis e componentes em um projeto React;
 - entender como refatorar o código para uma melhor organização;
 - fazer melhorias funcionais na aplicação.
+
+## ✏️ Aula 9 - Valide o checkout
+
+- compreender os problemas que podem surgir quando o carrinho não é validado corretamente;
+- adicionar mensagens de erro e garantir que a formatação dos elementos seja adequada;
+- usar uma função que verifica se o carrinho está vazio e, se estiver, redireciona o usuário para outra página.
