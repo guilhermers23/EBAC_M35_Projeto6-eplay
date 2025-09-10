@@ -28,7 +28,9 @@ const Header = () => {
             </S.Humburger>
 
             <Link to="/">
-              <img src={logo} alt="Logo EPLAY" />
+              <h1>
+                <img src={logo} alt="Logo EPLAY" />
+              </h1>
             </Link>
 
             <S.NavDesktop>
@@ -40,7 +42,7 @@ const Header = () => {
             </S.NavDesktop>
           </S.NavbarHeader>
 
-          <S.ButtonCart onClick={open}>
+          <S.ButtonCart role="button" onClick={open}>
             {items.length}<span>- {plural}</span>
             <img src={cart} alt="Cart" />
           </S.ButtonCart>

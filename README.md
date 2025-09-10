@@ -221,3 +221,5 @@ Vamos desenvolver um e-commerce de jogos utilizando React, TypeScript, Styled Co
 - importar e usar bibliotecas de loaders em componentes React;
 - personalizar a aparência e o comportamento dos loaders para se adequar ao design da aplicação;
 - implementar loaders em diferentes partes da aplicação.
+
+## ✏️ Aula 10 - Acompanhe as considerações finais

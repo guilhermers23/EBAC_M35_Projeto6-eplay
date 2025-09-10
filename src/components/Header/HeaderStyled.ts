@@ -19,9 +19,13 @@ export const HeaderBar = styled.header`
   border-radius: 16px;
   margin-bottom: 80px;
 
-  a{
+  a, span{
     color: ${colors.white};
     font-weight: bold;
+  }
+
+  h1{
+    line-height: 0;
   }
 `
 export const HeaderRow = styled.div`
@@ -39,7 +43,7 @@ export const NavbarHeader = styled.div`
   }
 `
 
-export const ButtonCart = styled.a`
+export const ButtonCart = styled.span`
  display: flex;
  align-items: center;
  justify-content: space-between;

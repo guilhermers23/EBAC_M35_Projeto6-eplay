@@ -1,4 +1,3 @@
-import type { IGame } from './../../interfaces/IGame';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 type cartState = { items: IGame[], isOpen: boolean };
@@ -21,8 +20,9 @@ const cartSlice = createSlice({
     },
     openCart: (state) => { state.isOpen = true },
     closeCart: (state) => { state.isOpen = false },
+    clearCart: (state) => { state.items = [] },
   }
 });
 
-export const { addItemCart, removeItemCart, openCart, closeCart } = cartSlice.actions;
+export const { addItemCart, removeItemCart, openCart, closeCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

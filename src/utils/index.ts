@@ -1,5 +1,3 @@
-import type { IGame } from "../interfaces/IGame";
-
 export const parseToBrl = (price = 0) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',

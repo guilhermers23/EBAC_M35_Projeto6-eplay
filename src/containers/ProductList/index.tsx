@@ -1,4 +1,3 @@
-import type { IGame } from "../../interfaces/IGame";
 import { getAllTagsGames } from "../../utils";
 import Product from "../../components/Product";
 import Loader from "../../components/Loader";

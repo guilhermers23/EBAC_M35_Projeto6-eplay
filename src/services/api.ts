@@ -1,6 +1,5 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import type { IGame } from "../interfaces/IGame";
 
 type Product = {
   id: number;
@@ -68,7 +67,7 @@ const API = createApi({
     getGameById: builder.query<IGame, string>({
       query: (id) => `jogos/${id}`
     }),
-    purchase: builder.mutation<{ success: boolean; orderId?: string }, PurchasePayload>({
+    purchase: builder.mutation<{ orderId: string }, PurchasePayload>({
       query: (data) => ({
         url: "checkout",
         method: "POST",

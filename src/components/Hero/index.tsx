@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import type { IGame } from "../../interfaces/IGame";
 import { addItemCart, openCart } from "../../store/reducers/cart";
 import { parseToBrl } from "../../utils";
 import Button from "../Button";

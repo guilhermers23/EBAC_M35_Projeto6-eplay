@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import { colors } from "../../styles/GlobalStyles";
+import { breakpoints, colors } from "../../styles/GlobalStyles";
 type PropsTabButton = { isActive: boolean };
 
 export const Row = styled.div`
   display: flex;
   column-gap: 24px;
   align-items: flex-end;
+
+  @media (max-width:${breakpoints.tablet}) {
+    display: block;
+  }
 `
 
 export const InputGrup = styled.div`
@@ -33,6 +37,10 @@ export const InputGrup = styled.div`
     font-size: 14px;
     line-height: 22px;
   }
+
+  @media (max-width:${breakpoints.tablet}) {
+    margin-top: 16px;
+  }
 `
 
 export const TabButton = styled.button<PropsTabButton>`
@@ -50,8 +58,18 @@ export const TabButton = styled.button<PropsTabButton>`
   cursor: pointer;
 `
 
-export const Payments = styled.script`
+export const Payments = styled.section`
   display: flex;
   gap: 16px;
   margin-bottom: 24px;
+
+   @media (max-width:${breakpoints.tablet}) {
+    flex-direction: column;
+    align-items: center;
+    ${TabButton}{
+      width: 100%;
+      text-align: center;
+      padding: 20px 20px;
+    }
+  }
 `

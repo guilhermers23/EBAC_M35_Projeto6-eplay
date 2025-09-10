@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { IModalState, IPropsGallery } from "../../interfaces/IGame";
 import butonPlay from "../../assets/imgs/botao-play.png";
 import butonZoom from "../../assets/imgs/mais-zoom.png";
 import close from "../../assets/imgs/close.png";
@@ -7,6 +6,8 @@ import { Overlay } from "../../styles/GlobalStyles";
 import * as S from "./GalleryStyled";
 
 type Props = { defaultCover: string; name: string, midias: IPropsGallery[] };
+interface IPropsGallery { type: "image" | "video"; url: string; };
+interface IModalState extends IPropsGallery { visible: boolean };
 
 const Gallery = ({ defaultCover, name, midias }: Props) => {
   const [stateModal, setStateModal] = useState<IModalState>({ type: "image", visible: false, url: 'https://http.cat/images/404.jpg' });

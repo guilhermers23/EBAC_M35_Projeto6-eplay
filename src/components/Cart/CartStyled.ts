@@ -93,3 +93,17 @@ export const CartItem = styled.li`
     cursor: pointer;
   }
 `
+
+export const EmptyCart = styled.div`
+  text-align: center;
+  font-size: 18px;
+  line-height: 24px;
+  color: ${colors.white};
+  p{
+    margin-bottom: 8px;
+  }
+
+  img{
+    width: 100%;
+  }
+`

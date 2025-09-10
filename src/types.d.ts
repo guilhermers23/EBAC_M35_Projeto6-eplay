@@ -1,4 +1,4 @@
-export interface IGame {
+declare interface IGame {
   id: number;
   name: string;
   description: string;
@@ -21,6 +21,3 @@ export interface IGame {
     gallery: IPropsGallery[];
   };
 };
-
-export interface IPropsGallery { type: "image" | "video"; url: string; };
-export interface IModalState extends IPropsGallery { visible: boolean };

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router";
+import { IMaskInput } from "react-imask";
 import * as Yup from "yup";
 import { IoBarcodeSharp } from "react-icons/io5";
 import { FaCreditCard } from "react-icons/fa";
@@ -12,14 +13,16 @@ import Button from "../../components/Button";
 import Card from "../../components/Card";
 import { Container } from "../../styles/GlobalStyles";
 import * as S from "./CheckoutStyled";
+import { clearCart } from "../../store/reducers/cart";
 
 type Installments = { quantity: number, amount: number, formattedAmount: string };
 
 export const Checkout = () => {
+  const dispatch = useDispatch();
   const { items } = useSelector((state: RootReducer) => state.cart);
   const [payWithCard, setPayWithCard] = useState(false);
   const [installments, setInstallments] = useState<Installments[]>();
-  const [purchase, { isSuccess, data }] = usePurchaseMutation();
+  const [purchase, { isSuccess, isLoading, data }] = usePurchaseMutation();
   const totalPrice = getTotalPrice(items);
 
   const formAttributes = useFormik({
@@ -36,7 +39,7 @@ export const Checkout = () => {
       expiresMonth: '',
       expiresYear: '',
       cardCode: '',
-      installments: ''
+      installments: 1
     },
     validationSchema: Yup.object({
       name: Yup.string().required('Campo obrigatório').min(5, 'No mínimo 5 caracteres'),
@@ -51,11 +54,11 @@ export const Checkout = () => {
       expiresMonth: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
       expiresYear: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
       cardCode: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
-      installments: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
+      installments: Yup.number().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
     }),
     onSubmit: values => {
       purchase({
-        products: [{ id: 1, price: 200 }],
+        products: items.map(item => ({ id: item.id, price: item.prices.current as number })),
         billing: {
           document: values.cpf,
           email: values.email,
@@ -65,7 +68,7 @@ export const Checkout = () => {
           email: values.deliveryEmail
         },
         payment: {
-          installments: 1,
+          installments: values.installments,
           card: {
             active: payWithCard,
             code: Number(values.cardCode),
@@ -76,8 +79,8 @@ export const Checkout = () => {
               name: values.cardOwner
             },
             expires: {
-              moth: 12,
-              year: 2027
+              moth: Number(values.expiresMonth),
+              year: Number(values.expiresYear)
             },
           }
         },
@@ -110,7 +113,8 @@ export const Checkout = () => {
     }
   }, [totalPrice]);
 
-  if (items.length === 0) return <Navigate to='/' />;
+  useEffect(() => { if (isSuccess) dispatch(clearCart()) }, [isSuccess, dispatch]);
+  if (items.length === 0 && !isSuccess) return <Navigate to='/' />;
 
   return (
     <Container>
@@ -156,7 +160,7 @@ export const Checkout = () => {
               <S.Row>
                 <S.InputGrup>
                   <label htmlFor="name">Nome Completo</label>
-                  <input id="name" type="text"
+                  <input id="name" name="name" type="text"
                     value={formAttributes.values.name}
                     onChange={formAttributes.handleChange}
                     onBlur={formAttributes.handleBlur}
@@ -165,7 +169,7 @@ export const Checkout = () => {
 
                 <S.InputGrup>
                   <label htmlFor="email">E-mail</label>
-                  <input id="email" type="email"
+                  <input id="email" name="email" type="email"
                     value={formAttributes.values.email}
                     onChange={formAttributes.handleChange}
                     onBlur={formAttributes.handleBlur}
@@ -174,11 +178,21 @@ export const Checkout = () => {
 
                 <S.InputGrup>
                   <label htmlFor="cpf">CPF</label>
-                  <input id="cpf" type="text"
+                  <IMaskInput id="cpf" name="cpf" type="text"
+                    onAccept={(value) => {
+                      // Chamando a função handleChange do seu formulário
+                      formAttributes.handleChange({
+                        target: {
+                          name: 'cpf',
+                          value,
+                        },
+                      });
+                    }}
                     value={formAttributes.values.cpf}
-                    onChange={formAttributes.handleChange}
                     onBlur={formAttributes.handleBlur}
-                    className={checkInputHasError('cpf') ? 'error' : ''} />
+                    className={checkInputHasError('cpf') ? 'error' : ''}
+                    mask="000.000.000-00"
+                  />
                 </S.InputGrup>
               </S.Row>
 
@@ -186,7 +200,7 @@ export const Checkout = () => {
               <S.Row>
                 <S.InputGrup>
                   <label htmlFor="deliveryEmail">E-mail de envio</label>
-                  <input type="email" id="deliveryEmail"
+                  <input type="email" name="deliveryEmail" id="deliveryEmail"
                     value={formAttributes.values.deliveryEmail}
                     onChange={formAttributes.handleChange}
                     onBlur={formAttributes.handleBlur}
@@ -195,7 +209,7 @@ export const Checkout = () => {
 
                 <S.InputGrup>
                   <label htmlFor="confirmDeliveryEmail">Confirmar E-mail</label>
-                  <input type="email" id="confirmDeliveryEmail"
+                  <input type="email" name="confirmDeliveryEmail" id="confirmDeliveryEmail"
                     value={formAttributes.values.confirmDeliveryEmail}
                     onChange={formAttributes.handleChange}
                     onBlur={formAttributes.handleBlur}
@@ -227,7 +241,7 @@ export const Checkout = () => {
                     <S.Row>
                       <S.InputGrup>
                         <label htmlFor="cardOwner">Nome do titular do cartão</label>
-                        <input id="cardOwner" type="text"
+                        <input id="cardOwner" name="cardOwner" type="text"
                           value={formAttributes.values.cardOwner}
                           onChange={formAttributes.handleChange}
                           onBlur={formAttributes.handleBlur}
@@ -236,18 +250,26 @@ export const Checkout = () => {
 
                       <S.InputGrup>
                         <label htmlFor="cpfCardOwner">CPF do titular do cartão</label>
-                        <input id="cpfCardOwner" type="text"
+                        <IMaskInput id="cpfCardOwner" name="cpfCardOwner" type="text"
+                          onAccept={(value) => {
+                            formAttributes.handleChange({
+                              target: {
+                                name: 'cpfCardOwner',
+                                value,
+                              },
+                            });
+                          }}
                           value={formAttributes.values.cpfCardOwner}
-                          onChange={formAttributes.handleChange}
                           onBlur={formAttributes.handleBlur}
-                          className={checkInputHasError('cpfCardOwner') ? 'error' : ''} />
+                          className={checkInputHasError('cpfCardOwner') ? 'error' : ''}
+                          mask="000.000.000-00" />
                       </S.InputGrup>
                     </S.Row>
 
                     <S.Row style={{ marginTop: "24px" }}>
                       <S.InputGrup>
                         <label htmlFor="cardDisplayName">Nome no cartão</label>
-                        <input id="cardDisplayName" type="text"
+                        <input id="cardDisplayName" name="cardDisplayName" type="text"
                           value={formAttributes.values.cardDisplayName}
                           onChange={formAttributes.handleChange}
                           onBlur={formAttributes.handleBlur}
@@ -256,38 +278,70 @@ export const Checkout = () => {
 
                       <S.InputGrup>
                         <label htmlFor="cardNumber">Número do cartão</label>
-                        <input id="cardNumber" type="text"
+                        <IMaskInput id="cardNumber" name="cardNumber" type="text"
+                          onAccept={(value) => {
+                            formAttributes.handleChange({
+                              target: {
+                                name: 'cardNumber',
+                                value,
+                              },
+                            });
+                          }}
                           value={formAttributes.values.cardNumber}
-                          onChange={formAttributes.handleChange}
                           onBlur={formAttributes.handleBlur}
-                          className={checkInputHasError('cardNumber') ? 'error' : ''} />
+                          className={checkInputHasError('cardNumber') ? 'error' : ''}
+                          mask="0000 0000 0000 0000" />
                       </S.InputGrup>
 
                       <S.InputGrup style={{ maxWidth: "123px" }}>
                         <label htmlFor="expiresMonth">Mês de expiração</label>
-                        <input id="expiresMonth" type="text"
+                        <IMaskInput id="expiresMonth" name='expiresMonth' type="text"
+                          onAccept={(value) => {
+                            formAttributes.handleChange({
+                              target: {
+                                name: 'expiresMonth',
+                                value,
+                              },
+                            });
+                          }}
                           value={formAttributes.values.expiresMonth}
-                          onChange={formAttributes.handleChange}
                           onBlur={formAttributes.handleBlur}
-                          className={checkInputHasError('expiresMonth') ? 'error' : ''} />
+                          className={checkInputHasError('expiresMonth') ? 'error' : ''}
+                          mask="00" />
                       </S.InputGrup>
 
                       <S.InputGrup style={{ maxWidth: "123px" }}>
                         <label htmlFor="expiresYear">Ano de expiração</label>
-                        <input id="expiresYear" type="text"
+                        <IMaskInput id="expiresYear" name="expiresYear" type="text"
+                          onAccept={(value) => {
+                            formAttributes.handleChange({
+                              target: {
+                                name: 'expiresYear',
+                                value,
+                              },
+                            });
+                          }}
                           value={formAttributes.values.expiresYear}
-                          onChange={formAttributes.handleChange}
                           onBlur={formAttributes.handleBlur}
-                          className={checkInputHasError('expiresYear') ? 'error' : ''} />
+                          className={checkInputHasError('expiresYear') ? 'error' : ''}
+                          mask="00" />
                       </S.InputGrup>
 
                       <S.InputGrup style={{ maxWidth: "48px" }}>
                         <label htmlFor="cardCode">CVV</label>
-                        <input id="cardCode" type="number"
+                        <IMaskInput id="cardCode" name="cardCode" type="number"
+                          onAccept={(value) => {
+                            formAttributes.handleChange({
+                              target: {
+                                name: 'cardCode',
+                                value,
+                              },
+                            });
+                          }}
                           value={formAttributes.values.cardCode}
-                          onChange={formAttributes.handleChange}
                           onBlur={formAttributes.handleBlur}
-                          className={checkInputHasError('cardCode') ? 'error' : ''} />
+                          className={checkInputHasError('cardCode') ? 'error' : ''}
+                          mask="000" />
                       </S.InputGrup>
                     </S.Row>
 
@@ -317,8 +371,12 @@ export const Checkout = () => {
               </S.InputGrup>
             </>
           </Card>
-          <Button title="Finalizar compra" type="submit"
-            variantbutton="primary">Finalizar compra</Button>
+          <Button title="Finalizar compra"
+            type="submit"
+            variantbutton="primary"
+            disabled={isLoading}>
+            {isLoading ? 'Finalizando compra...' : "Finalizar compra"}
+          </Button>
         </form >
       )}
     </Container>

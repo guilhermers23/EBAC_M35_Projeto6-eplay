@@ -24,27 +24,32 @@ const Cart = () => {
     <S.CartContainer isopen={isOpen}>
       <Overlay onClick={close} />
       <S.Siderbar>
-        {items.length === 0 ? <h3>Seu carrinho está vazio! 🤔</h3> : (
-          <>
-            <ul>
-              {items.map(game =>
-                <ItemCart key={game.id}
-                  plataform={game.details.system}
-                  id={game.id}
-                  category={game.details.category}
-                  cover={game.media.thumbnail}
-                  title={game.name}
-                  price={parseToBrl(game.prices.current)} />
-              )}
-            </ul>
-            <S.Amount>{items.length} {plural} no carrinho</S.Amount>
-            <S.Prices>Total {parseToBrl(getTotalPrice(items))}
-              <span>Em até 6x sem juros</span></S.Prices>
-            <Button title="Continuar compra" variantbutton="primary"
-              type="button"
-              onClick={goToCheckout}>Continuar com a compra</Button>
-          </>
-        )
+        {items.length === 0 ?
+          <S.EmptyCart>
+            <p>Seu carrinho está vazio! 🤔</p>
+            <p>Que tal adicionar um game para continuar! 🎮</p>
+            <img src="https://www.handmadecachoeiro.com.br/Content/projeto/img/cesta-vazia.png" alt="Carrinho Vazio" />
+          </S.EmptyCart> : (
+            <>
+              <ul>
+                {items.map(game =>
+                  <ItemCart key={game.id}
+                    plataform={game.details.system}
+                    id={game.id}
+                    category={game.details.category}
+                    cover={game.media.thumbnail}
+                    title={game.name}
+                    price={parseToBrl(game.prices.current)} />
+                )}
+              </ul>
+              <S.Amount>{items.length} {plural} no carrinho</S.Amount>
+              <S.Prices>Total {parseToBrl(getTotalPrice(items))}
+                <span>Em até 6x sem juros</span></S.Prices>
+              <Button title="Continuar compra" variantbutton="primary"
+                type="button"
+                onClick={goToCheckout}>Continuar com a compra</Button>
+            </>
+          )
         }
       </S.Siderbar>
     </S.CartContainer>
