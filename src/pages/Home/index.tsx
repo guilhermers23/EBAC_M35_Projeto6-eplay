@@ -1,23 +1,24 @@
 import Banner from "../../components/Banner";
 import ProductList from "../../containers/ProductList";
-import { useGetComingSoonGamesQuery, useGetSaleGamesQuery } from "../../services/api";
+import { useGetAllGamesQuery } from "../../services/api";
 
 export const Home = () => {
-  const { data: gamesSale, isLoading: isLoadingSale } = useGetSaleGamesQuery();
-  const { data: gamesComingSoon, isLoading: isLoadingSoon } = useGetComingSoonGamesQuery();
+  const { data: games, isLoading } = useGetAllGamesQuery();
+  const onSaleGames = games?.filter((game) => game.tag === "on-sale");
+  const gamesComingSoon = games?.filter((game) => game.tag === "ComingSoonGames");
 
   return (
     <>
       <Banner />
       <ProductList title="Promoções"
-        games={gamesSale}
+        games={onSaleGames}
         background="gray"
-        isLoading={isLoadingSale}
+        isLoading={isLoading}
         sectionid="on-sale" />
       <ProductList title="Em Breve"
         games={gamesComingSoon}
         background="black"
-        isLoading={isLoadingSoon}
+        isLoading={isLoading}
         sectionid="coming-soon" />
     </>
   )

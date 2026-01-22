@@ -20,4 +20,5 @@ declare interface IGame {
     cover: string;
     gallery: IPropsGallery[];
   };
+  tag: string
 };
