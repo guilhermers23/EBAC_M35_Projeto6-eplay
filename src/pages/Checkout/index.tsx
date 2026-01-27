@@ -48,13 +48,13 @@ export const Checkout = () => {
       deliveryEmail: Yup.string().email('E-mail inválido').required('Campo obrigatório'),
       confirmDeliveryEmail: Yup.string().oneOf([Yup.ref('deliveryEmail')], "E-mails devem ser iguais.").required('Campo obrigatório'),
 
-      cardOwner: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
-      cardDisplayName: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
-      cardNumber: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
-      expiresMonth: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
-      expiresYear: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
-      cardCode: Yup.string().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
-      installments: Yup.number().when((values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
+      cardOwner: Yup.string().when((_values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
+      cardDisplayName: Yup.string().when((_values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
+      cardNumber: Yup.string().when((_values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
+      expiresMonth: Yup.string().when((_values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
+      expiresYear: Yup.string().when((_values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
+      cardCode: Yup.string().when((_values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
+      installments: Yup.number().when((_values, schema) => (payWithCard ? schema.required('Campo obrigatório') : schema)),
     }),
     onSubmit: values => {
       purchase({

@@ -36,6 +36,21 @@ type PurchasePayload = {
 };
 const featuredGame = (Math.random() * (6 - 1) + 1).toFixed();
 
+const APIBuy = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://api-ebac.vercel.app/api/eplay/"
+  }),
+  endpoints: (builder) => ({
+    purchase: builder.mutation<{ orderId: string }, PurchasePayload>({
+      query: (data) => ({
+        url: "checkout",
+        method: "POST",
+        body: data,
+      })
+    })
+  })
+});
+
 const API = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://696a26f63a2b2151f8473fce.mockapi.io/projects/"
@@ -50,15 +65,9 @@ const API = createApi({
     getGameById: builder.query<IGame, string>({
       query: (id) => `games/${id}`
     }),
-    purchase: builder.mutation<{ orderId: string }, PurchasePayload>({
-      query: (data) => ({
-        url: "checkout",
-        method: "POST",
-        body: data,
-      })
-    })
   })
 });
 
-export const { useGetFeaturedGamesQuery, useGetGameByIdQuery, usePurchaseMutation, useGetAllGamesQuery } = API;
+export const { useGetFeaturedGamesQuery, useGetGameByIdQuery, useGetAllGamesQuery } = API;
+export const { usePurchaseMutation } = APIBuy;
 export default API;
